@@ -11,6 +11,7 @@ This repository is configured to deploy directly to **GitHub Pages** using moder
 - **No Ruby**: Zero gem bundle errors, zero Ruby runtime dependencies.
 - **Workflow**: Automated build via `.github/workflows/deploy-static.yml`.
 
+
 ```bash
 # 1. Install dependencies
 npm install
