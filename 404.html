@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocuCraft Documentation – Redirecting</title>
+    <script>
+      // Single Page Application redirect for GitHub Pages deep links
+      var segmentCount = 1;
+      var l = window.location;
+      var repoPath = l.pathname.split('/').slice(0, 1 + segmentCount).join('/');
+      if (!repoPath.endsWith('/')) repoPath += '/';
+      window.location.replace(repoPath);
+    </script>
+  </head>
+  <body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #090d16; color: #f8fafc; text-align: center;">
+    <div>
+      <h2 style="font-size: 20px;">Routing to DocuCraft Documentation...</h2>
+      <p style="color: #94a3b8; font-size: 13px;">If you are not redirected automatically, <a href="./" style="color: #3b82f6;">click here</a>.</p>
+    </div>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 # _config.yml - Jekyll Documentation Site Configuration
-title: "DoCraft"
+title: "DocuCraft Documentation"
 description: "Modern technical guides and cookbook recipes for high-performance systems."
 author: "Engineering Team"
 url: "https://ThierryLab.github.io"
-baseurl: "/my-docs"
+baseurl: "/test001"
 
 # Build Settings
 markdown: kramdown

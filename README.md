@@ -1,37 +1,35 @@
-# DoCraft
+# DocuCraft Documentation
 
 > Modern technical guides and cookbook recipes for high-performance systems.
 
 ## 🚀 Deployment Modes
 
-This repository is configured to deploy directly to **GitHub Pages** using modern continuous integration.
-
-### Deployment Method 1: Standalone Pure Static Web Page (Zero Jekyll / Ruby Dependency)
-- **Fast**: Compiles cleanly with standard Node.js in $< 30\text{s}$.
-- **No Ruby**: Zero gem bundle errors, zero Ruby runtime dependencies.
-- **Workflow**: Automated build via `.github/workflows/deploy-static.yml`.
-
+### Mode 1: Standalone Static Web Page (Zero Jekyll / Ruby Dependency)
+- No Ruby, no Bundler, no gem install required.
+- Standard Node.js static build in $< 30\text{s}$.
+- Deploys via `.github/workflows/deploy-static.yml` directly to GitHub Pages.
 
 ```bash
-# 1. Install dependencies
+# Install dependencies
 npm install
 
-# 2. Run local development preview
+# Run development server
 npm run dev
 
-# 3. Build standalone static bundle
+# Build standalone production bundle
 npm run build
 ```
 
-### Deployment Method 2: Jekyll SSG (Optional)
-If your organization standardizes on Ruby and Jekyll:
+### Mode 2: Jekyll SSG (Optional)
+If you prefer Jekyll and Ruby:
 ```bash
 bundle install
 bundle exec jekyll serve
 ```
 
-## 📦 Setting Up GitHub Pages CI/CD
-1. Push this repository to GitHub: `https://github.com/ThierryLab/my-docs`.
-2. Go to repository **Settings** -> **Pages**.
-3. Under **Build and deployment** -> **Source**, select **GitHub Actions**.
-4. Every push to the `main` branch will trigger an automated build, link verification, and deployment!
+## 📦 Fixing the "404 File Not Found" on GitHub Pages
+1. Go to your GitHub repository -> **Settings** -> **Pages**.
+2. Under **Build and deployment** -> **Source**, select **GitHub Actions** (NOT "Deploy from a branch").
+3. Push your repository to GitHub.
+4. Click the **Actions** tab in GitHub and verify the workflow completes with a green checkmark.
+5. Your site is live at: https://ThierryLab.github.io/test001/
