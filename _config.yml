@@ -1,0 +1,33 @@
+# _config.yml - Jekyll Documentation Site Configuration
+title: "DoCraft"
+description: "Modern technical guides and cookbook recipes for high-performance systems."
+author: "Engineering Team"
+url: "https://ThierryLab.github.io"
+baseurl: "/my-docs"
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections for Guides and Cookbook Recipes
+collections:
+  docs:
+    output: true
+    permalink: /docs/:slug/
+  recipes:
+    output: true
+    permalink: /recipes/:slug/
+
+# Exclude unnecessary build files
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .github/workflows/deploy-static.yml
