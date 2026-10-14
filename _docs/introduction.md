@@ -15,15 +15,15 @@ Understand the core design philosophy, execution pipeline, and structural paradi
 
 ## Design Philosophy
 
-DocuCraft provides a unified, distraction-free technical documentation and recipe cookbook experience. It embraces a strict typographic hierarchy, responsive sidebar layouts, resilient offline-first search, and seamless continuous integration.
+DocuCraft provides a unified, distraction-free technical documentation platform engineered for enterprise standards. It embraces strict typographic hierarchy, responsive multi-level navigation trees, resilient offline-first search, and seamless continuous integration.
 
-Whether you need an API reference manual for an enterprise SDK or a pragmatic code cookbook for daily engineering tasks, DocuCraft delivers both without forcing you into heavy frameworks.
+Whether you need an API reference manual for an enterprise SDK or a comprehensive developer guide, DocuCraft delivers with zero framework bloat and total deployment portability.
 
 
 
 ## Execution Pipeline
 
-Every documentation request flows through a zero-latency client-side cache before hydrating interactive elements. This ensures your readers enjoy instantaneous transitions between articles, multi-language code snippets, and live test consoles.
+Every documentation request flows through an in-memory client-side cache before hydrating interactive elements. This ensures instantaneous transitions between articles, multi-language code snippets, and live test consoles.
 
 ```typescript
 import { createPipeline, Middleware } from '@docucraft/core';
@@ -45,10 +45,10 @@ pipeline.use(async (ctx, next) => {
 export default pipeline;
 ```
 
-## Key Characteristics
+## Key Architectural Principles
 
-1. **Zero-Lockin Deployment**: Deploy as a pure static HTML page on GitHub Pages, Cloudflare, Netlify, or export as a Jekyll SSG.
-2. **Accessible by Default**: Fully conforms to WCAG AA color contrast guidelines, screen-reader landmarks, and mobile touch target minimums.
+1. **Zero-Lockin Deployment**: Deploy as a pure static HTML page on GitHub Pages, Cloudflare, Netlify, or export as Jekyll markdown.
+2. **Accessible by Default**: Fully conforms to WCAG AA color contrast guidelines, screen-reader landmarks, and touch target minimums.
 3. **Universal Code Highlighting**: Syntax-colored code blocks across 6+ languages with copy verification, line indicators, and diff badges.
 4. **Built-In CI Automation**: Production-ready GitHub Actions workflows for link validation, markdown linting, and automated static page publishing.
 

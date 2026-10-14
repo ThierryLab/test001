@@ -71,18 +71,11 @@
   </header>
   <div class="app-frame">
     <nav class="sidebar" id="sidebar">
-      <div class="sidebar-section-title">Guides & Reference</div>
+      <div class="sidebar-section-title">Technical Guides</div>
       {% for doc in site.docs %}
         <a href="{{ doc.url | relative_url }}" class="nav-link {% if page.url == doc.url %}active{% endif %}">
           <span>{{ doc.title }}</span>
           {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
-        </a>
-      {% endfor %}
-      <div class="sidebar-section-title">Cookbook Recipes</div>
-      {% for recipe in site.recipes %}
-        <a href="{{ recipe.url | relative_url }}" class="nav-link {% if page.url == recipe.url %}active{% endif %}">
-          <span>{{ recipe.title }}</span>
-          {% if recipe.difficulty %}<span class="badge-diff">{{ recipe.difficulty }}</span>{% endif %}
         </a>
       {% endfor %}
     </nav>

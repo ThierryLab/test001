@@ -8,7 +8,6 @@ baseurl: "/test001"
 # Build Settings
 markdown: kramdown
 highlighter: rouge
-theme: minima
 
 # Plugins
 plugins:
@@ -16,14 +15,11 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Collections for Guides and Cookbook Recipes
+# Collections for Technical Guides
 collections:
   docs:
     output: true
     permalink: /docs/:slug/
-  recipes:
-    output: true
-    permalink: /recipes/:slug/
 
 # Exclude unnecessary build files and ruby vendor folders
 exclude:

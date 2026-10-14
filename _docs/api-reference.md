@@ -34,7 +34,7 @@ curl -X GET https://api.docucraft.dev/v1/projects \
 
 ## Standard Response Schema
 
-All API responses follow a uniform JSON envelope:
+All API responses follow a uniform JSON envelope with request metadata and latency telemetry:
 
 ```json
 {

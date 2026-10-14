@@ -21,17 +21,17 @@ Ensure you have Node.js 18+ installed on your system (or any standard web browse
 
 ## Creating a New Project
 
-Scaffold a new documentation hub using your preferred package manager:
+Scaffold a new documentation hub using your preferred package manager or cURL command:
 
 ```bash
 # Using npm
-npx create-docucraft@latest my-docs --template hybrid
+npx create-docucraft@latest my-docs
 
 # Using pnpm
-pnpm create docucraft my-docs --template hybrid
+pnpm create docucraft my-docs
 
 # Using yarn
-yarn create docucraft my-docs --template hybrid
+yarn create docucraft my-docs
 ```
 
 ## Local Development Server
@@ -47,7 +47,7 @@ npm run dev
 
 ## Building for Production
 
-When you are ready to publish, run the build command to generate optimized static files in `/dist`:
+When you are ready to publish, run the build command to generate optimized static files in `/dist` and `/docs`:
 
 ```bash
 npm run build

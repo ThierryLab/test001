@@ -15,23 +15,23 @@ Deep dive into configuration parameters, custom typography tokens, brand color s
 
 ## Configuration Schema
 
-The primary configuration file `docucraft.config.ts` controls brand metadata, navigation trees, and deployment behavior:
+The primary configuration file controls brand metadata, navigation trees, and deployment behavior:
 
 ```typescript
 import { defineConfig } from '@docucraft/config';
 
 export default defineConfig({
-  title: 'Acme Developer Hub',
-  description: 'Official API guides, SDK reference, and production cookbooks.',
-  author: 'Acme Cloud Engineering',
+  title: 'Enterprise Developer Hub',
+  description: 'Official API guides, SDK reference, and architecture specs.',
+  author: 'Platform Engineering',
   github: {
-    owner: 'acme-corp',
+    owner: 'enterprise-org',
     repo: 'docs',
     branch: 'main',
   },
   theme: {
     accentColor: '#2563EB', // Royal Blue
-    defaultMode: 'system',  // 'light' | 'dark' | 'system'
+    defaultMode: 'dark',    // 'light' | 'dark' | 'system'
     fontDisplay: 'Plus Jakarta Sans',
     fontBody: 'DM Sans',
     fontMono: 'JetBrains Mono',
@@ -43,13 +43,13 @@ export default defineConfig({
   },
   deployment: {
     target: 'static', // 'static' or 'jekyll'
-    basePath: '/',
+    basePath: './',
   },
 });
 ```
 
-## Theme Color Tokens
+## Typography & Token System
 
-DocuCraft uses standard Tailwind CSS color variables. You can customize your palette in `src/index.css` to align with your organization’s design tokens without breaking dark mode compensation.
+DocuCraft uses standard CSS custom properties. You can customize your palette in `src/index.css` to align with your organization’s design tokens without breaking dark mode compensation.
 
 
