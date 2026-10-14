@@ -1,4 +1,4 @@
-# DODOC
+# THE DOC
 
 > Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment.
 
@@ -32,4 +32,4 @@ bundle exec jekyll serve
 2. Under **Build and deployment** -> **Source**, select **GitHub Actions** (NOT "Deploy from a branch").
 3. Push your repository to GitHub.
 4. Click the **Actions** tab in GitHub and verify the workflow completes with a green checkmark.
-5. Your site is live at: https://ThierryLab.github.io/test001/
+5. Your site is live at: https://ThierryLAB.github.io/test001/

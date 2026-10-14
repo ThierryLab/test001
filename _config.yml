@@ -1,8 +1,8 @@
 # _config.yml - Jekyll Documentation Site Configuration
-title: "DODOC"
+title: "THE DOC"
 description: "Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment."
-author: "DocuCraft Engineering"
-url: "https://ThierryLab.github.io"
+author: "doc Engineering"
+url: "https://ThierryLAB.github.io"
 baseurl: "/test001"
 
 # Build Settings
