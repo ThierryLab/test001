@@ -3,6 +3,7 @@ layout: guide
 title: "REST & RPC API Reference"
 description: "Complete specification of developer endpoints, request validation schemas, and standard error envelopes."
 category: "API Reference"
+subcategory: "REST Endpoints"
 difficulty: "Intermediate"
 read_time: "6 min"
 last_updated: "October 2026"

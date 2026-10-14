@@ -3,6 +3,7 @@ layout: guide
 title: "Configuration & Customization"
 description: "Deep dive into configuration parameters, custom typography tokens, brand color schemes, and search indexing."
 category: "Core Concepts"
+subcategory: "Architecture"
 difficulty: "Intermediate"
 read_time: "5 min"
 last_updated: "October 2026"

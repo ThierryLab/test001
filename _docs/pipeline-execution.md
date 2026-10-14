@@ -3,6 +3,7 @@ layout: guide
 title: "Execution Pipeline & Lifecycle"
 description: "Explore the request lifecycle, caching layers, middleware hooks, and AST tokenization pipeline."
 category: "Core Concepts"
+subcategory: "Architecture"
 difficulty: "Intermediate"
 read_time: "4 min"
 last_updated: "October 2026"

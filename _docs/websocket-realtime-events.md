@@ -3,6 +3,7 @@ layout: guide
 title: "Real-Time Events & WebSockets"
 description: "Bi-directional WebSocket protocol for real-time document change subscription and live cluster metrics."
 category: "API Reference"
+subcategory: "Streaming Protocols"
 difficulty: "Intermediate"
 read_time: "5 min"
 last_updated: "October 2026"

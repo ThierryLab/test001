@@ -3,6 +3,7 @@ layout: guide
 title: "Project Structure & Files"
 description: "Learn how to structure multi-chapter technical documentation, assets, navigation definitions, and layout components."
 category: "Getting Started"
+subcategory: "Project Structure"
 difficulty: "Intermediate"
 read_time: "3 min"
 last_updated: "October 2026"

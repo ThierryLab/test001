@@ -3,7 +3,7 @@ layout: default
 title: Technical Documentation Overview
 ---
 
-# doc f
+# doc master
 
 Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment.
 

@@ -3,6 +3,7 @@ layout: guide
 title: "Introduction & Core Architecture"
 description: "Understand the core design philosophy, execution pipeline, and structural paradigms behind DocuCraft."
 category: "Getting Started"
+subcategory: "Fundamentals"
 difficulty: "Intermediate"
 read_time: "4 min"
 last_updated: "October 2026"

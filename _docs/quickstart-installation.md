@@ -3,6 +3,7 @@ layout: guide
 title: "Quickstart & Installation"
 description: "Get up and running with DocuCraft in less than two minutes across npm, pnpm, yarn, or direct HTML export."
 category: "Getting Started"
+subcategory: "Fundamentals"
 difficulty: "Intermediate"
 read_time: "3 min"
 last_updated: "October 2026"

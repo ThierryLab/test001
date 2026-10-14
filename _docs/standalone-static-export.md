@@ -3,6 +3,7 @@ layout: guide
 title: "Standalone Static Web Export"
 description: "How to build and distribute pure, zero-dependency HTML/CSS/JS bundles for internal intranet or air-gapped systems."
 category: "Deployment & Operations"
+subcategory: "Static Bundles"
 difficulty: "Intermediate"
 read_time: "3 min"
 last_updated: "October 2026"

@@ -3,6 +3,7 @@ layout: guide
 title: "Typography & Design System"
 description: "Executive typographic guidelines, spatial grid discipline, zero-pill doctrine, and dark mode color balance."
 category: "Core Concepts"
+subcategory: "Design Standards"
 difficulty: "Intermediate"
 read_time: "4 min"
 last_updated: "October 2026"

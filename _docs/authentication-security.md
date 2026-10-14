@@ -3,6 +3,7 @@ layout: guide
 title: "Authentication & Token Security"
 description: "Public-key cryptography, JWT verification, token rotation strategies, and security best practices."
 category: "Security & Governance"
+subcategory: "Access Control"
 difficulty: "Intermediate"
 read_time: "5 min"
 last_updated: "October 2026"

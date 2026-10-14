@@ -3,6 +3,7 @@ layout: guide
 title: "Interactive Navigation Tree & Quick Controls"
 description: "Configure your documentation page name in docs.config.ts and test the interactive quick control navigation tree."
 category: "Getting Started"
+subcategory: "Project Structure"
 difficulty: "Intermediate"
 read_time: "3 min"
 last_updated: "October 2026"

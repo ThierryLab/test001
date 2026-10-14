@@ -3,6 +3,7 @@ layout: guide
 title: "Request Validation & Payloads"
 description: "Strict JSON schema definitions, field constraints, header specifications, and boundary rules."
 category: "API Reference"
+subcategory: "REST Endpoints"
 difficulty: "Intermediate"
 read_time: "4 min"
 last_updated: "October 2026"

@@ -3,6 +3,7 @@ layout: guide
 title: "Sliding Window Rate Limiting"
 description: "Detailed analysis of distributed rate limiting algorithms, token buckets, and boundary spike mitigation."
 category: "Security & Governance"
+subcategory: "Access Control"
 difficulty: "Intermediate"
 read_time: "4 min"
 last_updated: "October 2026"

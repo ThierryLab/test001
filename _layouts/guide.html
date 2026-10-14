@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} | {{ site.title | default: "doc f" }}</title>
+  <title>{{ page.title }} | {{ site.title | default: "doc master" }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,6 +82,17 @@
     .category-count { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 9999px; background: var(--surface-subtle); color: var(--text-muted); border: 1px solid var(--border); }
     .tree-category-items { list-style: none; padding: 0; margin: 3px 0 6px 12px; border-left: 1.5px solid var(--border); padding-left: 10px; display: none; }
     .tree-category.is-expanded > .tree-category-items { display: block; }
+    .tree-subcategory-node { list-style: none; margin: 3px 0; }
+    .tree-subcategory { margin: 2px 0 4px 0; }
+    .tree-subcategory-header { width: 100%; background: transparent; border: none; display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 6px; cursor: pointer; text-align: left; color: var(--text-muted); font-family: inherit; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; transition: background-color 0.15s, color 0.15s; }
+    .tree-subcategory-header:hover { background: var(--surface-subtle); color: var(--text); }
+    .tree-subcategory.is-active-sub > .tree-subcategory-header { color: var(--accent); }
+    .sub-chevron { width: 11px; height: 11px; color: var(--text-dim); transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); flex-shrink: 0; }
+    .tree-subcategory.is-expanded > .tree-subcategory-header .sub-chevron { transform: rotate(90deg); }
+    .subcategory-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .subcategory-count { font-size: 9.5px; font-weight: 600; padding: 0.5px 5px; border-radius: 9999px; background: var(--surface-subtle); color: var(--text-dim); border: 1px solid var(--border); }
+    .tree-subcategory-items { list-style: none; padding: 0; margin: 2px 0 4px 8px; border-left: 1.5px dashed var(--border); padding-left: 8px; display: none; }
+    .tree-subcategory.is-expanded > .tree-subcategory-items { display: block; }
     .tree-item { margin-bottom: 2px; }
     .tree-doc-link, .tree-doc-link:link, .tree-doc-link:visited { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 9px; font-size: 12.5px; color: var(--text-muted) !important; text-decoration: none !important; border-radius: 7px; font-weight: 500; transition: all 0.15s; position: relative; }
     .tree-doc-link:hover, .tree-doc-link:visited:hover { background: var(--surface-subtle) !important; color: var(--text) !important; }
@@ -95,6 +106,8 @@
     .sidebar.density-compact .tree-doc-link { padding: 3.5px 7px; font-size: 11.5px; }
     .sidebar.density-compact .tree-category-header { padding: 4px 6px; font-size: 11.5px; }
     .sidebar.density-compact .tree-category-items { margin: 2px 0 4px 10px; padding-left: 8px; }
+    .sidebar.density-compact .tree-subcategory-header { padding: 3px 6px; font-size: 11px; }
+    .sidebar.density-compact .tree-subcategory-items { margin: 1px 0 3px 6px; padding-left: 6px; }
     .tree-empty-state { padding: 24px 12px; text-align: center; font-size: 12px; color: var(--text-muted); }
     .reset-filter-btn { background: var(--accent); color: #fff; border: none; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; }
     .content-container { flex: 1; padding: 48px 40px; max-width: 820px; margin: 0 auto; min-width: 0; }
@@ -104,6 +117,30 @@
     .article-body { font-size: 15px; line-height: 1.75; color: var(--text); }
     .article-body h2 { margin-top: 40px; margin-bottom: 16px; font-size: 22px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
     .article-body h3 { margin-top: 28px; margin-bottom: 12px; font-size: 17px; }
+    
+    /* Guide Pager (Previous & Next Guide Navigation) */
+    .guide-pager { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pager-card { display: flex; flex-direction: column; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); text-decoration: none !important; transition: all 0.2s ease; }
+    .pager-card:hover { border-color: var(--accent); background: var(--surface-subtle); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05); }
+    .pager-prev { align-items: flex-start; text-align: left; }
+    .pager-next { align-items: flex-end; text-align: right; grid-column: 2; }
+    .pager-direction { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim) !important; margin-bottom: 4px; }
+    .pager-card:hover .pager-direction { color: var(--accent) !important; }
+    .pager-title { font-size: 14px; font-weight: 700; color: var(--text) !important; line-height: 1.35; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .pager-card:hover .pager-title { color: var(--accent) !important; }
+    .pager-context { font-size: 11px; color: var(--text-muted) !important; margin-top: 2px; }
+    .pager-spacer { display: block; }
+    @media (max-width: 640px) { .guide-pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+
+    /* Optional Site Footer */
+    .site-footer { border-top: 1px solid var(--border); background: var(--surface); padding: 24px 0; margin-top: 48px; width: 100%; }
+    .footer-inner { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12px; color: var(--text-muted); }
+    .footer-copy { line-height: 1.5; }
+    .footer-links { display: flex; align-items: center; gap: 16px; }
+    .footer-link, .footer-link:visited { color: var(--text-muted) !important; text-decoration: none !important; font-weight: 500; transition: color 0.15s; }
+    .footer-link:hover { color: var(--accent) !important; }
+    @media (max-width: 640px) { .footer-inner { flex-direction: column; text-align: center; gap: 12px; } }
+
     .toc-pane { width: var(--toc-w); padding: 48px 24px; position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); overflow-y: auto; flex-shrink: 0; font-size: 12px; }
     .toc-title { font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
     .toc-list { list-style: none; padding: 0; margin: 0; }
@@ -138,7 +175,7 @@
       <button type="button" class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
       <a href="{{ '/' | relative_url }}" class="brand">
         <span class="brand-icon">D</span>
-        <span class="brand-title">{{ site.title | default: "doc f" }}</span>
+        <span class="brand-title">{{ site.title | default: "doc master" }}</span>
       </a>
       <span class="brand-tag">Guides</span>
     </div>
@@ -195,13 +232,46 @@
                 <span class="category-count" title="{{ group.items.size }} technical guides">{{ group.items.size }}</span>
               </button>
               <ul class="tree-category-items" id="items-{{ cat_id }}">
-                {% for doc in group.items %}
-                  <li class="tree-item" data-title="{{ doc.title | downcase }}" data-category="{{ group.name | downcase }}">
-                    <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}" title="{{ doc.title | escape }}">
-                      <span class="tree-doc-text">{{ doc.title }}</span>
-                      {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
-                    </a>
-                  </li>
+                {% assign sub_groups = group.items | group_by: "subcategory" %}
+                {% for sub in sub_groups %}
+                  {% if sub.name != "" and sub.name != nil %}
+                    {% assign sub_id = cat_id | append: "-" | append: sub.name | slugify %}
+                    {% assign sub_has_active = false %}
+                    {% for doc in sub.items %}
+                      {% if page.url == doc.url %}{% assign sub_has_active = true %}{% endif %}
+                    {% endfor %}
+                    <li class="tree-subcategory-node" data-subcategory="{{ sub.name | downcase }}" data-category="{{ group.name | downcase }}">
+                      <div class="tree-subcategory {% if sub_has_active %}is-expanded is-active-sub{% else %}is-expanded{% endif %}" id="subcat-{{ sub_id }}">
+                        <button type="button" class="tree-subcategory-header" onclick="toggleTreeSubcategory('{{ sub_id }}')" aria-expanded="true">
+                          <svg class="chevron-icon sub-chevron" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                          </svg>
+                          <span class="subcategory-title">{{ sub.name }}</span>
+                          <span class="subcategory-count" title="{{ sub.items.size }} guides in {{ sub.name }}">{{ sub.items.size }}</span>
+                        </button>
+
+                        <ul class="tree-subcategory-items" id="subitems-{{ sub_id }}">
+                          {% for doc in sub.items %}
+                            <li class="tree-item" data-title="{{ doc.title | downcase }}" data-category="{{ group.name | downcase }}" data-subcategory="{{ sub.name | downcase }}">
+                              <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}" title="{{ doc.title | escape }}">
+                                <span class="tree-doc-text">{{ doc.title }}</span>
+                                {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </li>
+                  {% else %}
+                    {% for doc in sub.items %}
+                      <li class="tree-item" data-title="{{ doc.title | downcase }}" data-category="{{ group.name | downcase }}">
+                        <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}" title="{{ doc.title | escape }}">
+                          <span class="tree-doc-text">{{ doc.title }}</span>
+                          {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  {% endif %}
                 {% endfor %}
               </ul>
             </div>
@@ -249,6 +319,55 @@
           </div>
         </div>
         <div class="article-body" id="articleBody">{{ content }}</div>
+
+        <!-- Previous & Next Guide Navigation -->
+        {% assign all_docs = site.docs %}
+        {% assign prev_doc = nil %}
+        {% assign next_doc = nil %}
+        {% assign found_current = false %}
+        {% for d in all_docs %}
+          {% if d.url == page.url %}
+            {% assign found_current = true %}
+          {% elsif found_current == false %}
+            {% assign prev_doc = d %}
+          {% elsif found_current == true and next_doc == nil %}
+            {% assign next_doc = d %}
+          {% endif %}
+        {% endfor %}
+
+        {% if prev_doc or next_doc %}
+          <nav class="guide-pager" aria-label="Guide pagination">
+            {% if prev_doc %}
+              <a href="{{ prev_doc.url | relative_url }}" class="pager-card pager-prev" rel="prev">
+                <span class="pager-direction">
+                  <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd"/></svg>
+                  <span>Previous</span>
+                </span>
+                <span class="pager-title">{{ prev_doc.title }}</span>
+                {% if prev_doc.subcategory or prev_doc.category %}
+                  <span class="pager-context">{{ prev_doc.subcategory | default: prev_doc.category }}</span>
+                {% endif %}
+              </a>
+            {% else %}
+              <div class="pager-spacer"></div>
+            {% endif %}
+
+            {% if next_doc %}
+              <a href="{{ next_doc.url | relative_url }}" class="pager-card pager-next" rel="next">
+                <span class="pager-direction">
+                  <span>Next</span>
+                  <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                </span>
+                <span class="pager-title">{{ next_doc.title }}</span>
+                {% if next_doc.subcategory or next_doc.category %}
+                  <span class="pager-context">{{ next_doc.subcategory | default: next_doc.category }}</span>
+                {% endif %}
+              </a>
+            {% else %}
+              <div class="pager-spacer"></div>
+            {% endif %}
+          </nav>
+        {% endif %}
       </article>
     </main>
     <aside class="toc-pane">
@@ -256,6 +375,22 @@
       <ul class="toc-list" id="tocList"></ul>
     </aside>
   </div>
+
+  {% assign show_footer = page.show_footer | default: site.show_footer %}
+  {% if show_footer != false %}
+    <!-- Optional Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-copy">
+          {{ site.footer_text | default: "© 2026 doc master. All rights reserved." }}
+        </div>
+        <div class="footer-links">
+          <a href="{{ '/' | relative_url }}" class="footer-link">Home</a>
+          <a href="#top" class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Top ↑</a>
+        </div>
+      </div>
+    </footer>
+  {% endif %}
 
   <!-- Floating Restore Navigation Pill Button (when hidden) -->
   <button type="button" class="sidebar-unhide-pill" id="sidebarUnhidePill" onclick="toggleSidebarVisibility(false)" title="Restore navigation sidebar (Ctrl+B or [)">
@@ -479,10 +614,24 @@
       saveTreeState();
     }
 
+    function toggleTreeSubcategory(subId) {
+      var sub = document.getElementById('subcat-' + subId);
+      if (!sub) return;
+      var isExpanded = sub.classList.toggle('is-expanded');
+      var headerBtn = sub.querySelector('.tree-subcategory-header');
+      if (headerBtn) headerBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      saveTreeState();
+    }
+
     function expandAllTreeCategories() {
       document.querySelectorAll('.tree-category').forEach(function(c) {
         c.classList.add('is-expanded');
         var btn = c.querySelector('.tree-category-header');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      });
+      document.querySelectorAll('.tree-subcategory').forEach(function(s) {
+        s.classList.add('is-expanded');
+        var btn = s.querySelector('.tree-subcategory-header');
         if (btn) btn.setAttribute('aria-expanded', 'true');
       });
       saveTreeState();
@@ -493,6 +642,13 @@
         if (!c.classList.contains('is-active-branch')) {
           c.classList.remove('is-expanded');
           var btn = c.querySelector('.tree-category-header');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.querySelectorAll('.tree-subcategory').forEach(function(s) {
+        if (!s.classList.contains('is-active-sub')) {
+          s.classList.remove('is-expanded');
+          var btn = s.querySelector('.tree-subcategory-header');
           if (btn) btn.setAttribute('aria-expanded', 'false');
         }
       });
@@ -510,7 +666,7 @@
 
     function saveTreeState() {
       var expandedIds = [];
-      document.querySelectorAll('.tree-category.is-expanded').forEach(function(c) {
+      document.querySelectorAll('.tree-category.is-expanded, .tree-subcategory.is-expanded').forEach(function(c) {
         if (c.id) expandedIds.push(c.id);
       });
       try { localStorage.setItem(TREE_STORAGE_KEY, JSON.stringify(expandedIds)); } catch (e) {}
@@ -531,7 +687,8 @@
         items.forEach(function(item) {
           var title = (item.getAttribute('data-title') || '').toLowerCase();
           var category = (item.getAttribute('data-category') || '').toLowerCase();
-          var isMatch = !q || title.indexOf(q) !== -1 || category.indexOf(q) !== -1;
+          var subcategory = (item.getAttribute('data-subcategory') || '').toLowerCase();
+          var isMatch = !q || title.indexOf(q) !== -1 || category.indexOf(q) !== -1 || subcategory.indexOf(q) !== -1;
           if (isMatch) {
             item.style.display = '';
             catMatches++;
@@ -540,6 +697,24 @@
             item.style.display = 'none';
           }
         });
+
+        // Also adjust subcategory containers within this category
+        cat.querySelectorAll('.tree-subcategory').forEach(function(sub) {
+          var subItems = sub.querySelectorAll('.tree-item');
+          var visibleSubItems = 0;
+          subItems.forEach(function(si) {
+            if (si.style.display !== 'none') visibleSubItems++;
+          });
+          if (q && visibleSubItems > 0) {
+            sub.classList.add('is-expanded');
+            sub.style.display = '';
+          } else if (q && visibleSubItems === 0) {
+            sub.style.display = 'none';
+          } else {
+            sub.style.display = '';
+          }
+        });
+
         if (!q) {
           cat.style.display = '';
         } else if (catMatches > 0) {
@@ -573,8 +748,8 @@
         if (savedRaw) {
           var savedIds = JSON.parse(savedRaw);
           if (Array.isArray(savedIds)) {
-            document.querySelectorAll('.tree-category').forEach(function(c) {
-              if (savedIds.indexOf(c.id) !== -1 || c.classList.contains('is-active-branch')) {
+            document.querySelectorAll('.tree-category, .tree-subcategory').forEach(function(c) {
+              if (savedIds.indexOf(c.id) !== -1 || c.classList.contains('is-active-branch') || c.classList.contains('is-active-sub')) {
                 c.classList.add('is-expanded');
               } else {
                 c.classList.remove('is-expanded');
@@ -586,6 +761,11 @@
 
       var activeLink = document.querySelector('.tree-doc-link.active');
       if (activeLink) {
+        var activeSub = activeLink.closest('.tree-subcategory');
+        if (activeSub) {
+          activeSub.classList.add('is-expanded');
+          activeSub.classList.add('is-active-sub');
+        }
         var activeCat = activeLink.closest('.tree-category');
         if (activeCat) {
           activeCat.classList.add('is-expanded');
