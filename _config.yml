@@ -1,7 +1,7 @@
 # _config.yml - Jekyll Documentation Site Configuration
-title: "doc f"
+title: "MASTER DOC"
 description: "Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment."
-author: "DocuCraft Engineering"
+author: "DC Engineering"
 url: "https://ThierryLab.github.io"
 baseurl: "/test001"
 
