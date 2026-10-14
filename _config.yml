@@ -2,7 +2,7 @@
 title: "DocuCraft Documentation"
 description: "Modern technical guides and cookbook recipes for high-performance systems."
 author: "Engineering Team"
-url: "https://ThierryLab.github.io"
+url: "https://Thierrylab.github.io"
 baseurl: "/test001"
 
 # Build Settings
@@ -25,14 +25,14 @@ collections:
     output: true
     permalink: /recipes/:slug/
 
-# Exclude unnecessary build files
+# Exclude unnecessary build files and ruby vendor folders
 exclude:
-  - node_modules
-  - package.json
-  - package-lock.json
-  - .github/workflows/deploy-static.yml
   - vendor
   - vendor/bundle
   - .bundle
+  - node_modules
+  - package.json
+  - package-lock.json
   - Gemfile.lock
+  - .github
   - dist
