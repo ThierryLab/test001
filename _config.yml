@@ -31,3 +31,8 @@ exclude:
   - package.json
   - package-lock.json
   - .github/workflows/deploy-static.yml
+  - vendor
+  - vendor/bundle
+  - .bundle
+  - Gemfile.lock
+  - dist
