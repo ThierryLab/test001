@@ -3,20 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DocuCraft Documentation – Redirecting</title>
-    <script>
-      // Single Page Application redirect for GitHub Pages deep links
-      var segmentCount = 1;
-      var l = window.location;
-      var repoPath = l.pathname.split('/').slice(0, 1 + segmentCount).join('/');
-      if (!repoPath.endsWith('/')) repoPath += '/';
-      window.location.replace(repoPath);
-    </script>
+    <title>DocuCraft Documentation – Page Not Found</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #090d16;
+        color: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+      }
+      .box {
+        max-width: 440px;
+        padding: 32px;
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: 12px;
+      }
+      h1 { font-size: 24px; margin-bottom: 8px; color: #fff; }
+      p { font-size: 14px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; }
+      a {
+        display: inline-block;
+        background: #2563eb;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+    </style>
   </head>
-  <body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #090d16; color: #f8fafc; text-align: center;">
-    <div>
-      <h2 style="font-size: 20px;">Routing to DocuCraft Documentation...</h2>
-      <p style="color: #94a3b8; font-size: 13px;">If you are not redirected automatically, <a href="./" style="color: #3b82f6;">click here</a>.</p>
+  <body>
+    <div class="box">
+      <h1>Page Not Found</h1>
+      <p>The documentation page could not be found or GitHub Pages is still building your latest deployment.</p>
+      <a href="./">Open Documentation Home</a>
     </div>
   </body>
 </html>
