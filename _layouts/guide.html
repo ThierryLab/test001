@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} | {{ site.title | default: "DOC B" }}</title>
+  <title>{{ page.title }} | {{ site.title | default: "doc f" }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,34 +13,55 @@
     :root {
       --bg: #fafafa; --surface: #ffffff; --surface-subtle: #f1f5f9; --border: #e2e8f0;
       --border-subtle: #edf2f7; --text: #0f172a; --text-muted: #64748b; --text-dim: #94a3b8;
-      --accent: #2563eb; --accent-hover: #1d4ed8; --accent-soft: rgba(37, 99, 235, 0.08);
-      --accent-active: rgba(37, 99, 235, 0.14); --code-bg: #090d16;
+      --accent: #0284c7; --accent-hover: #0369a1; --accent-soft: rgba(2, 132, 199, 0.08);
+      --accent-active: rgba(2, 132, 199, 0.14); --code-bg: #090d16;
       --header-h: 64px; --sidebar-w: 300px; --toc-w: 240px;
     }
     [data-theme="dark"] {
       --bg: #090d16; --surface: #0f172a; --surface-subtle: #1e293b; --border: #1e293b;
       --border-subtle: #192434; --text: #f8fafc; --text-muted: #94a3b8; --text-dim: #64748b;
-      --accent: #3b82f6; --accent-hover: #60a5fa; --accent-soft: rgba(59, 130, 246, 0.12);
-      --accent-active: rgba(59, 130, 246, 0.2); --code-bg: #030712;
+      --accent: #38bdf8; --accent-hover: #7dd3fc; --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-active: rgba(56, 189, 248, 0.2); --code-bg: #030712;
     }
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; transition: background-color 0.2s, color 0.2s; }
     h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
     .topbar { position: sticky; top: 0; height: var(--header-h); background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; z-index: 50; backdrop-filter: blur(8px); }
     .brand-group { display: flex; align-items: center; gap: 12px; }
-    .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.02em; }
-    .brand-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
-    .brand-title { color: var(--text); }
-    a { color: var(--text); }
-    a:visited { color: inherit; }
-    .brand:visited { color: var(--text); }
-    .brand-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 7px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(59, 130, 246, 0.2); }
+    .brand, .brand:visited, .brand:hover, .brand:active, .brand:focus { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; color: var(--text) !important; text-decoration: none !important; display: flex; align-items: center; gap: 10px; letter-spacing: -0.02em; }
+    .brand-icon { width: 28px; height: 28px; border-radius: 8px; background: #0284c7 !important; color: #ffffff !important; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; box-shadow: 0 1px 3px rgba(2, 132, 199, 0.25); border: 1px solid rgba(255, 255, 255, 0.15); flex-shrink: 0; }
+    [data-theme="dark"] .brand-icon { background: #0284c7 !important; color: #ffffff !important; border-color: rgba(255, 255, 255, 0.2); }
+    .brand-title { color: var(--text) !important; }
+    a, a:link { color: var(--text); text-decoration: none; }
+    a:visited { color: inherit; text-decoration: none; }
+    a:active { color: inherit; text-decoration: none; }
+    .brand:visited .brand-title, .brand:active .brand-title { color: var(--text) !important; }
+    .brand:visited .brand-icon, .brand:active .brand-icon { color: #ffffff !important; background: #0284c7 !important; }
+    .brand-tag, .brand-group .brand-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 9999px; background: var(--surface-subtle) !important; color: var(--text-muted) !important; border: 1px solid var(--border) !important; flex-shrink: 0; user-select: none; }
     .topbar-actions { display: flex; align-items: center; gap: 12px; }
-    .theme-toggle, .menu-btn { background: var(--surface-subtle); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 12.5px; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
-    .theme-toggle:hover, .menu-btn:hover { background: var(--border); }
+    .theme-toggle, .menu-btn, .sidebar-toggle-btn { background: var(--surface-subtle); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 12.5px; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .theme-toggle:hover, .menu-btn:hover, .sidebar-toggle-btn:hover { background: var(--border); color: var(--accent); }
     .menu-btn { display: none; }
-    .app-frame { display: flex; max-width: 1440px; margin: 0 auto; min-height: calc(100vh - var(--header-h)); }
-    .sidebar { width: var(--sidebar-w); background: var(--surface); border-right: 1px solid var(--border); padding: 18px 14px 28px 14px; position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); overflow-y: auto; flex-shrink: 0; }
+    .app-frame { display: flex; max-width: 1440px; margin: 0 auto; min-height: calc(100vh - var(--header-h)); position: relative; }
+    .sidebar { width: var(--sidebar-w); min-width: 220px; max-width: 760px; background: var(--surface); border-right: 1px solid var(--border); padding: 18px 14px 28px 14px; position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); overflow-y: auto; flex-shrink: 0; transition: opacity 0.2s ease; }
+    
+    /* Horizontal Drag Resizer Handle */
+    .sidebar-resizer { width: 12px; margin-left: -6px; margin-right: -6px; cursor: col-resize; position: relative; z-index: 35; display: flex; align-items: center; justify-content: center; flex-shrink: 0; user-select: none; -webkit-user-select: none; touch-action: none; transition: background-color 0.15s; }
+    .sidebar-resizer:hover, .sidebar-resizer.is-active { background-color: var(--accent-soft); }
+    .sidebar-resizer-line { width: 2.5px; height: 38px; border-radius: 9999px; background: var(--border); transition: background-color 0.15s, height 0.15s; }
+    .sidebar-resizer:hover .sidebar-resizer-line, .sidebar-resizer.is-active .sidebar-resizer-line { background: var(--accent); height: 72px; }
+    body.is-resizing { cursor: col-resize !important; user-select: none !important; -webkit-user-select: none !important; }
+
+    /* Hide Navigation Mode */
+    body.sidebar-hidden .sidebar { display: none !important; }
+    body.sidebar-hidden .sidebar-resizer { display: none !important; }
+    body.sidebar-hidden .content-container { max-width: 960px; margin: 0 auto; padding: 48px 48px; }
+
+    /* Floating Unhide Pill Button */
+    .sidebar-unhide-pill { display: none; position: fixed; bottom: 24px; left: 24px; z-index: 95; background: var(--accent); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 9999px; padding: 9px 18px; font-size: 12.5px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35); align-items: center; gap: 8px; transition: transform 0.15s, background-color 0.15s; font-family: inherit; }
+    .sidebar-unhide-pill:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    body.sidebar-hidden .sidebar-unhide-pill { display: inline-flex !important; }
+
     .tree-controls-bar { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
     .tree-filter-box { position: relative; display: flex; align-items: center; background: var(--surface-subtle); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; }
     .tree-filter-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
@@ -62,14 +83,15 @@
     .tree-category-items { list-style: none; padding: 0; margin: 3px 0 6px 12px; border-left: 1.5px solid var(--border); padding-left: 10px; display: none; }
     .tree-category.is-expanded > .tree-category-items { display: block; }
     .tree-item { margin-bottom: 2px; }
-    .tree-doc-link { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 9px; font-size: 12.5px; color: var(--text-muted); text-decoration: none; border-radius: 7px; font-weight: 500; transition: all 0.15s; position: relative; }
-    .tree-doc-link:visited { color: var(--text-muted); }
-    .tree-doc-link:hover { background: var(--surface-subtle); color: var(--text); }
-    .tree-doc-link.active, .tree-doc-link.active:visited { background: var(--accent-active); color: var(--accent); font-weight: 600; }
+    .tree-doc-link, .tree-doc-link:link, .tree-doc-link:visited { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 9px; font-size: 12.5px; color: var(--text-muted) !important; text-decoration: none !important; border-radius: 7px; font-weight: 500; transition: all 0.15s; position: relative; }
+    .tree-doc-link:hover, .tree-doc-link:visited:hover { background: var(--surface-subtle) !important; color: var(--text) !important; }
+    .tree-doc-link:active, .tree-doc-link:visited:active { background: var(--accent-active) !important; color: var(--accent) !important; }
+    .tree-doc-link.active, .tree-doc-link.active:visited, .tree-doc-link.active:hover, .tree-doc-link.active:active, .tree-doc-link.active:focus { background: var(--accent-active) !important; color: var(--accent) !important; font-weight: 600 !important; }
+    .tree-doc-link:visited .tree-doc-text, .tree-doc-link:active .tree-doc-text, .tree-doc-link.active .tree-doc-text { color: inherit !important; }
     .tree-doc-link.active::before { content: ''; position: absolute; left: -11px; top: 50%; transform: translateY(-50%); width: 3px; height: 16px; background: var(--accent); border-radius: 2px; }
     .tree-doc-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .badge-diff { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: var(--surface-subtle); color: var(--text-dim); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
-    .tree-doc-link.active .badge-diff { background: rgba(37, 99, 235, 0.15); color: var(--accent); }
+    .badge-diff { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: var(--surface-subtle); color: var(--text-dim) !important; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+    .tree-doc-link.active .badge-diff, .tree-doc-link.active:visited .badge-diff { background: var(--accent-soft) !important; color: var(--accent) !important; }
     .sidebar.density-compact .tree-doc-link { padding: 3.5px 7px; font-size: 11.5px; }
     .sidebar.density-compact .tree-category-header { padding: 4px 6px; font-size: 11.5px; }
     .sidebar.density-compact .tree-category-items { margin: 2px 0 4px 10px; padding-left: 8px; }
@@ -86,8 +108,10 @@
     .toc-title { font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
     .toc-list { list-style: none; padding: 0; margin: 0; }
     .toc-list li { margin-bottom: 8px; }
-    .toc-list a { color: var(--text-muted); text-decoration: none; display: block; line-height: 1.4; }
-    .toc-list a:hover { color: var(--accent); }
+    .toc-list a, .toc-list a:link, .toc-list a:visited, .toc-list a:active, .toc-list a:focus, .toc-link, .toc-link:visited { color: var(--text-muted) !important; text-decoration: none !important; display: block; line-height: 1.4; transition: color 0.15s, transform 0.15s; }
+    .toc-list a:hover, .toc-list a:visited:hover, .toc-link:hover, .toc-link:visited:hover { color: var(--accent) !important; text-decoration: none !important; }
+    .toc-list a:active, .toc-list a:visited:active, .toc-link:active { color: var(--accent) !important; }
+    .toc-list a.active, .toc-list a.active:visited, .toc-link.active, .toc-link.active:visited { color: var(--accent) !important; font-weight: 600 !important; }
     .code-wrapper { position: relative; margin: 24px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--code-bg); }
     .copy-btn { position: absolute; top: 8px; right: 8px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 11px; padding: 4px 8px; border-radius: 6px; cursor: pointer; }
     .copy-btn:hover { background: rgba(255, 255, 255, 0.2); }
@@ -98,7 +122,11 @@
     @media (max-width: 1100px) { .toc-pane { display: none; } }
     @media (max-width: 768px) {
       .menu-btn { display: inline-flex; }
-      .sidebar { position: fixed; left: -100%; top: var(--header-h); bottom: 0; z-index: 100; transition: left 0.25s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+      .sidebar-toggle-btn { display: none !important; }
+      .sidebar-resizer { display: none !important; }
+      .sidebar-unhide-pill { display: none !important; }
+      body.sidebar-hidden .sidebar { display: block !important; }
+      .sidebar { position: fixed; left: -100%; top: var(--header-h); bottom: 0; z-index: 100; width: 82% !important; max-width: 320px !important; transition: left 0.25s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
       .sidebar.open { left: 0; }
       .content-container { padding: 24px 16px; }
     }
@@ -110,11 +138,15 @@
       <button type="button" class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
       <a href="{{ '/' | relative_url }}" class="brand">
         <span class="brand-icon">D</span>
-        <span class="brand-title">{{ site.title | default: "DOC B" }}</span>
-        <span class="brand-tag">Guides</span>
+        <span class="brand-title">{{ site.title | default: "doc f" }}</span>
       </a>
+      <span class="brand-tag">Guides</span>
     </div>
     <div class="topbar-actions">
+      <button type="button" class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebarVisibility()" title="Toggle navigation bar visibility (Ctrl+B or [)">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M3 4.75A.75.75 0 013.75 4h12.5a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75H3.75a.75.75 0 01-.75-.75V4.75zm1.5 9.75H8V5.5h6.5v9z" clip-rule="evenodd"/></svg>
+        <span class="sidebar-toggle-text">Sidebar</span>
+      </button>
       <button type="button" class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
     </div>
   </header>
@@ -140,6 +172,10 @@
           <button type="button" class="tree-action-btn" id="treeDensityBtn" onclick="toggleTreeDensity()" title="Toggle compact density">
             <span id="densityLabel">Compact</span>
           </button>
+          <button type="button" class="tree-action-btn" onclick="toggleSidebarVisibility(true)" title="Hide navigation bar to view only guide (Ctrl+B / [)">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path fill-rule="evenodd" d="M14 3.5a.75.75 0 00-.75-.75H2.75a.75.75 0 000 1.5h10.5A.75.75 0 0014 3.5zm-5 4.5a.75.75 0 00-.75-.75H2.75a.75.75 0 000 1.5h5.5A.75.75 0 009 8zm-2 4.5a.75.75 0 00-.75-.75H2.75a.75.75 0 000 1.5h3.5A.75.75 0 007 12.5zm4.03-3.28a.75.75 0 010-1.06l2.25-2.25a.75.75 0 011.06 1.06L13.06 8l1.28 1.28a.75.75 0 01-1.06 1.06l-2.25-2.25z" clip-rule="evenodd"/></svg>
+            <span>Hide</span>
+          </button>
         </div>
       </div>
 
@@ -161,7 +197,7 @@
               <ul class="tree-category-items" id="items-{{ cat_id }}">
                 {% for doc in group.items %}
                   <li class="tree-item" data-title="{{ doc.title | downcase }}" data-category="{{ group.name | downcase }}">
-                    <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}">
+                    <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}" title="{{ doc.title | escape }}">
                       <span class="tree-doc-text">{{ doc.title }}</span>
                       {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
                     </a>
@@ -179,7 +215,7 @@
             <ul class="tree-category-items" style="display: block;">
               {% for doc in site.docs %}
                 <li class="tree-item" data-title="{{ doc.title | downcase }}">
-                  <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}">
+                  <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}" title="{{ doc.title | escape }}">
                     <span class="tree-doc-text">{{ doc.title }}</span>
                     {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
                   </a>
@@ -194,6 +230,12 @@
         </div>
       </div>
     </nav>
+
+    <!-- Horizontal Drag Resizer Handle -->
+    <div class="sidebar-resizer" id="sidebarResizer" role="separator" aria-orientation="vertical" aria-label="Resize navigation tree horizontally" title="Drag left/right to resize navigation width (Double-click to reset)">
+      <div class="sidebar-resizer-line"></div>
+    </div>
+
     <main class="content-container">
       <article>
         <div class="article-header">
@@ -214,6 +256,13 @@
       <ul class="toc-list" id="tocList"></ul>
     </aside>
   </div>
+
+  <!-- Floating Restore Navigation Pill Button (when hidden) -->
+  <button type="button" class="sidebar-unhide-pill" id="sidebarUnhidePill" onclick="toggleSidebarVisibility(false)" title="Restore navigation sidebar (Ctrl+B or [)">
+    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 4.75A.75.75 0 013.75 4h12.5a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75H3.75a.75.75 0 01-.75-.75V4.75zm1.5 9.75H8V5.5h6.5v9z" clip-rule="evenodd"/></svg>
+    <span>Show Guides</span>
+  </button>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
@@ -228,21 +277,23 @@
       updateThemeBtn(saved);
     }
     function toggleTheme() {
-      var current = document.documentElement.getAttribute('data-theme') || 'dark';
-      var next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('docucraft_theme', next);
-      updateThemeBtn(next);
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      var nxt = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nxt);
+      localStorage.setItem('docucraft_theme', nxt);
+      updateThemeBtn(nxt);
     }
     function updateThemeBtn(theme) {
       var btn = document.getElementById('themeBtn');
       if (btn) btn.innerHTML = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
     }
     initTheme();
+
     function toggleSidebar() {
       var sb = document.getElementById('sidebar');
       if (sb) sb.classList.toggle('open');
     }
+
     function buildTOC() {
       var body = document.getElementById('articleBody');
       var list = document.getElementById('tocList');
@@ -259,12 +310,14 @@
         if (h.tagName === 'H3') li.style.paddingLeft = '12px';
         var a = document.createElement('a');
         a.href = '#' + h.id;
+        a.className = 'toc-link';
         a.innerText = h.innerText;
         li.appendChild(a);
         list.appendChild(li);
       });
     }
     buildTOC();
+
     document.querySelectorAll('pre').forEach(function(pre) {
       var wrapper = document.createElement('div');
       wrapper.className = 'code-wrapper';
@@ -285,6 +338,137 @@
 
     var TREE_STORAGE_KEY = 'docucraft_gh_tree_state';
     var DENSITY_STORAGE_KEY = 'docucraft_gh_tree_density';
+    var SIDEBAR_WIDTH_KEY = 'docucraft_gh_sidebar_width';
+    var SIDEBAR_HIDDEN_KEY = 'docucraft_gh_sidebar_hidden';
+    var DEFAULT_SIDEBAR_WIDTH = 300;
+    var MIN_SIDEBAR_WIDTH = 220;
+    var MAX_SIDEBAR_WIDTH = 750;
+
+    function applySidebarWidth(width) {
+      var sidebar = document.getElementById('sidebar');
+      if (!sidebar) return;
+      var maxAllowed = Math.min(MAX_SIDEBAR_WIDTH, Math.max(MIN_SIDEBAR_WIDTH, Math.floor(window.innerWidth * 0.65)));
+      var clamped = Math.max(MIN_SIDEBAR_WIDTH, Math.min(width, maxAllowed));
+      sidebar.style.width = clamped + 'px';
+      document.documentElement.style.setProperty('--sidebar-w', clamped + 'px');
+    }
+
+    function initSidebarResizer() {
+      var resizer = document.getElementById('sidebarResizer');
+      var sidebar = document.getElementById('sidebar');
+      if (!resizer || !sidebar) return;
+      var isDragging = false;
+      var startX = 0;
+      var startWidth = 0;
+
+      function onPointerDown(clientX) {
+        isDragging = true;
+        startX = clientX;
+        startWidth = sidebar.getBoundingClientRect().width;
+        resizer.classList.add('is-active');
+        document.body.classList.add('is-resizing');
+      }
+
+      function onPointerMove(clientX) {
+        if (!isDragging) return;
+        var newWidth = startWidth + (clientX - startX);
+        applySidebarWidth(newWidth);
+      }
+
+      function onPointerUp() {
+        if (!isDragging) return;
+        isDragging = false;
+        resizer.classList.remove('is-active');
+        document.body.classList.remove('is-resizing');
+        var finalWidth = sidebar.getBoundingClientRect().width;
+        try { localStorage.setItem(SIDEBAR_WIDTH_KEY, Math.round(finalWidth)); } catch(e) {}
+      }
+
+      resizer.addEventListener('mousedown', function(e) {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        onPointerDown(e.clientX);
+        function handleMouseMove(ev) { onPointerMove(ev.clientX); }
+        function handleMouseUp() {
+          window.removeEventListener('mousemove', handleMouseMove);
+          window.removeEventListener('mouseup', handleMouseUp);
+          onPointerUp();
+        }
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+      });
+
+      resizer.addEventListener('dblclick', function() {
+        applySidebarWidth(DEFAULT_SIDEBAR_WIDTH);
+        try { localStorage.removeItem(SIDEBAR_WIDTH_KEY); } catch(e) {}
+      });
+
+      resizer.addEventListener('touchstart', function(e) {
+        if (e.touches.length !== 1) return;
+        onPointerDown(e.touches[0].clientX);
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function(e) {
+        if (!isDragging || e.touches.length !== 1) return;
+        onPointerMove(e.touches[0].clientX);
+      }, { passive: true });
+
+      window.addEventListener('touchend', function() {
+        if (isDragging) onPointerUp();
+      });
+    }
+
+    function toggleSidebarVisibility(forceHide) {
+      var isCurrentlyHidden = document.body.classList.contains('sidebar-hidden');
+      var willHide = typeof forceHide === 'boolean' ? forceHide : !isCurrentlyHidden;
+      if (willHide) {
+        document.body.classList.add('sidebar-hidden');
+        try { localStorage.setItem(SIDEBAR_HIDDEN_KEY, 'true'); } catch(e) {}
+      } else {
+        document.body.classList.remove('sidebar-hidden');
+        try { localStorage.setItem(SIDEBAR_HIDDEN_KEY, 'false'); } catch(e) {}
+      }
+      updateSidebarToggleBtn(willHide);
+    }
+
+    function updateSidebarToggleBtn(isHidden) {
+      var btn = document.getElementById('sidebarToggleBtn');
+      if (btn) {
+        btn.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+        btn.setAttribute('title', isHidden ? 'Show navigation bar (Ctrl+B or [)' : 'Hide navigation bar (Ctrl+B or [)');
+        var label = btn.querySelector('.sidebar-toggle-text');
+        if (label) label.innerText = isHidden ? 'Show Nav' : 'Hide Nav';
+      }
+    }
+
+    function restoreSidebarState() {
+      try {
+        var savedWidth = localStorage.getItem(SIDEBAR_WIDTH_KEY);
+        if (savedWidth) {
+          var parsed = parseInt(savedWidth, 10);
+          if (!isNaN(parsed) && parsed >= MIN_SIDEBAR_WIDTH) applySidebarWidth(parsed);
+        }
+      } catch(e) {}
+      try {
+        var isHidden = localStorage.getItem(SIDEBAR_HIDDEN_KEY) === 'true';
+        if (isHidden && window.innerWidth > 768) {
+          document.body.classList.add('sidebar-hidden');
+          updateSidebarToggleBtn(true);
+        } else {
+          updateSidebarToggleBtn(false);
+        }
+      } catch(e) {}
+    }
+
+    window.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
+        e.preventDefault();
+        toggleSidebarVisibility();
+      } else if (e.key === '[' && !['INPUT', 'TEXTAREA'].includes((e.target || {}).tagName)) {
+        e.preventDefault();
+        toggleSidebarVisibility();
+      }
+    });
 
     function toggleTreeCategory(catId) {
       var cat = document.getElementById('cat-' + catId);
@@ -422,6 +606,8 @@
         if (label) label.innerText = 'Cozy';
       }
       restoreSavedTreeState();
+      initSidebarResizer();
+      restoreSidebarState();
       var filterInput = document.getElementById('treeFilterInput');
       if (filterInput) {
         filterInput.addEventListener('keydown', function(e) {
@@ -431,6 +617,8 @@
     });
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       restoreSavedTreeState();
+      initSidebarResizer();
+      restoreSidebarState();
     }
   </script>
 </body>
