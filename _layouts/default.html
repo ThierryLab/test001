@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} | {{ site.title | default: "doc master" }}</title>
+  <title>{{ page.title }} | {{ site.title | default: "THE DOC MASTER" }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,14 +132,31 @@
     .pager-spacer { display: block; }
     @media (max-width: 640px) { .guide-pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
 
-    /* Optional Site Footer */
-    .site-footer { border-top: 1px solid var(--border); background: var(--surface); padding: 24px 0; margin-top: 48px; width: 100%; }
-    .footer-inner { max-width: 1440px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12px; color: var(--text-muted); }
-    .footer-copy { line-height: 1.5; }
-    .footer-links { display: flex; align-items: center; gap: 16px; }
-    .footer-link, .footer-link:visited { color: var(--text-muted) !important; text-decoration: none !important; font-weight: 500; transition: color 0.15s; }
-    .footer-link:hover { color: var(--accent) !important; }
-    @media (max-width: 640px) { .footer-inner { flex-direction: column; text-align: center; gap: 12px; } }
+    /* Modern Executive Site Footer */
+    .site-footer { border-top: 1px solid var(--border); background: var(--surface); padding: 48px 0 32px 0; margin-top: 64px; width: 100%; color: var(--text-muted); font-size: 13px; }
+    .footer-container { max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 40px; }
+    .footer-col.brand-col { display: flex; flex-direction: column; gap: 12px; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-logo { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 700; font-size: 11px; }
+    .footer-title { font-weight: 700; font-size: 15px; color: var(--text); }
+    .footer-desc { font-size: 12.5px; line-height: 1.6; color: var(--text-muted); margin: 0; max-width: 320px; }
+    .footer-status-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; padding: 4px 10px; border-radius: 9999px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); color: #10b981; width: fit-content; font-weight: 500; }
+    .status-indicator-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block; }
+    .footer-col-title { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text); margin: 0 0 14px 0; }
+    .footer-link-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .footer-nav-link, .footer-nav-link:visited { color: var(--text-muted) !important; text-decoration: none !important; font-size: 12.5px; transition: color 0.15s; }
+    .footer-nav-link:hover { color: var(--accent) !important; }
+    .footer-nav-btn { background: none; border: none; padding: 0; color: var(--text-muted); font-size: 12.5px; cursor: pointer; text-align: left; transition: color 0.15s; font-family: inherit; }
+    .footer-nav-btn:hover { color: var(--accent); }
+    .footer-shortcuts-card { background: var(--surface-subtle); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .shortcut-row { display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; }
+    .shortcut-row kbd { background: var(--surface); border: 1px solid var(--border); padding: 2px 5px; border-radius: 4px; font-size: 10px; font-family: var(--font-mono); }
+    .footer-top-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text) !important; font-size: 12px; font-weight: 500; text-decoration: none !important; transition: all 0.15s; }
+    .footer-top-btn:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .footer-bottom-bar { border-top: 1px solid var(--border-subtle); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12px; color: var(--text-dim); }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom-bar { flex-direction: column; align-items: flex-start; } }
 
     .toc-pane { width: var(--toc-w); padding: 48px 24px; position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); overflow-y: auto; flex-shrink: 0; font-size: 12px; }
     .toc-title { font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
@@ -175,7 +192,7 @@
       <button type="button" class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
       <a href="{{ '/' | relative_url }}" class="brand">
         <span class="brand-icon">D</span>
-        <span class="brand-title">{{ site.title | default: "doc master" }}</span>
+        <span class="brand-title">{{ site.title | default: "THE DOC MASTER" }}</span>
       </a>
       <span class="brand-tag">Guides</span>
     </div>
@@ -320,19 +337,24 @@
         </div>
         <div class="article-body" id="articleBody">{{ content }}</div>
 
-        <!-- Previous & Next Guide Navigation -->
-        {% assign all_docs = site.docs %}
+        <!-- Previous & Next Guide Navigation Following Exact Category & Subcategory Sequence -->
         {% assign prev_doc = nil %}
         {% assign next_doc = nil %}
         {% assign found_current = false %}
-        {% for d in all_docs %}
-          {% if d.url == page.url %}
-            {% assign found_current = true %}
-          {% elsif found_current == false %}
-            {% assign prev_doc = d %}
-          {% elsif found_current == true and next_doc == nil %}
-            {% assign next_doc = d %}
-          {% endif %}
+        {% assign doc_groups = site.docs | group_by: "category" %}
+        {% for cat_group in doc_groups %}
+          {% assign sub_groups = cat_group.items | group_by: "subcategory" %}
+          {% for sub_group in sub_groups %}
+            {% for d in sub_group.items %}
+              {% if d.url == page.url %}
+                {% assign found_current = true %}
+              {% elsif found_current == false %}
+                {% assign prev_doc = d %}
+              {% elsif found_current == true and next_doc == nil %}
+                {% assign next_doc = d %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
         {% endfor %}
 
         {% if prev_doc or next_doc %}
@@ -341,11 +363,21 @@
               <a href="{{ prev_doc.url | relative_url }}" class="pager-card pager-prev" rel="prev">
                 <span class="pager-direction">
                   <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd"/></svg>
-                  <span>Previous</span>
+                  <span>
+                    {% if prev_doc.subcategory and prev_doc.subcategory == page.subcategory %}
+                      Previous in {{ page.subcategory }}
+                    {% elsif prev_doc.category == page.category %}
+                      Previous in {{ page.category }}
+                    {% else %}
+                      Previous: {{ prev_doc.category }}
+                    {% endif %}
+                  </span>
                 </span>
                 <span class="pager-title">{{ prev_doc.title }}</span>
                 {% if prev_doc.subcategory or prev_doc.category %}
-                  <span class="pager-context">{{ prev_doc.subcategory | default: prev_doc.category }}</span>
+                  <span class="pager-context">
+                    {% if prev_doc.subcategory %}{{ prev_doc.category }} › {{ prev_doc.subcategory }}{% else %}{{ prev_doc.category }}{% endif %}
+                  </span>
                 {% endif %}
               </a>
             {% else %}
@@ -355,12 +387,22 @@
             {% if next_doc %}
               <a href="{{ next_doc.url | relative_url }}" class="pager-card pager-next" rel="next">
                 <span class="pager-direction">
-                  <span>Next</span>
+                  <span>
+                    {% if next_doc.subcategory and next_doc.subcategory == page.subcategory %}
+                      Next in {{ page.subcategory }}
+                    {% elsif next_doc.category == page.category %}
+                      Next in {{ page.category }}
+                    {% else %}
+                      Next: {{ next_doc.category }}
+                    {% endif %}
+                  </span>
                   <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
                 </span>
                 <span class="pager-title">{{ next_doc.title }}</span>
                 {% if next_doc.subcategory or next_doc.category %}
-                  <span class="pager-context">{{ next_doc.subcategory | default: next_doc.category }}</span>
+                  <span class="pager-context">
+                    {% if next_doc.subcategory %}{{ next_doc.category }} › {{ next_doc.subcategory }}{% else %}{{ next_doc.category }}{% endif %}
+                  </span>
                 {% endif %}
               </a>
             {% else %}
@@ -378,15 +420,75 @@
 
   {% assign show_footer = page.show_footer | default: site.show_footer %}
   {% if show_footer != false %}
-    <!-- Optional Site Footer -->
+    <!-- Modern Executive Documentation Footer -->
     <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-copy">
-          {{ site.footer_text | default: "© 2026 doc master. All rights reserved." }}
+      <div class="footer-container">
+        <div class="footer-grid">
+          <!-- Col 1: Brand & Overview -->
+          <div class="footer-col brand-col">
+            <div class="footer-brand">
+              <span class="footer-logo">{{ site.title | slice: 0, 2 | default: "DC" }}</span>
+              <span class="footer-title">{{ site.title | default: "THE DOC MASTER" }}</span>
+            </div>
+            <p class="footer-desc">
+              {{ site.description | default: "Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment." }}
+            </p>
+            <div class="footer-status-badge">
+              <span class="status-indicator-dot"></span>
+              <span>Static Engine Operational · Zero Dependencies</span>
+            </div>
+          </div>
+
+          <!-- Col 2: Documentation Navigation -->
+          <div class="footer-col">
+            <h4 class="footer-col-title">Documentation</h4>
+            <ul class="footer-link-list">
+              {% for d in site.docs limit: 5 %}
+                <li><a href="{{ d.url | relative_url }}" class="footer-nav-link">{{ d.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Col 3: Navigation Tools -->
+          <div class="footer-col">
+            <h4 class="footer-col-title">Navigation Tools</h4>
+            <ul class="footer-link-list">
+              <li><a href="{{ '/' | relative_url }}" class="footer-nav-link">Documentation Home</a></li>
+              <li><button type="button" class="footer-nav-btn" onclick="openSearchModal()">Search (⌘K)</button></li>
+              <li><button type="button" class="footer-nav-btn" onclick="toggleDensity()">Toggle Density</button></li>
+              <li><button type="button" class="footer-nav-btn" onclick="toggleTheme()">Switch Theme</button></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Shortcuts & Resources -->
+          <div class="footer-col">
+            <h4 class="footer-col-title">Shortcuts</h4>
+            <div class="footer-shortcuts-card">
+              <div class="shortcut-row">
+                <span>Quick Search</span>
+                <kbd>⌘K</kbd>
+              </div>
+              <div class="shortcut-row">
+                <span>Toggle Tree</span>
+                <kbd>Ctrl+B</kbd>
+              </div>
+            </div>
+            <div style="margin-top: 12px;">
+              <a href="#top" class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                <span>Back to Top</span>
+                <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z" clip-rule="evenodd"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="{{ '/' | relative_url }}" class="footer-link">Home</a>
-          <a href="#top" class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Top ↑</a>
+
+        <div class="footer-bottom-bar">
+          <div class="footer-copy">
+            {{ site.footer_text | default: "© 2026 THE DOC MASTER. All rights reserved." }}
+          </div>
+          <div class="footer-meta">
+            <span>Built with pure static HTML & CSS · MIT License</span>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,13 +1,13 @@
 # _config.yml - Jekyll Documentation Site Configuration
-title: "doc master"
+title: "THE DOC MASTER"
 description: "Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment."
-author: "D Engineering"
+author: "DocuCraft Engineering"
 url: "https://ThierryLab.github.io"
 baseurl: "/test001"
 
 # Footer Configuration (set show_footer to false to completely hide the footer)
 show_footer: true
-footer_text: "© 2026 doc master. All rights reserved. Built with modern documentation standards."
+footer_text: "© 2026 THE DOC MASTER. All rights reserved. Built with modern documentation standards."
 footer_links:
   - title: "Home"
     url: "/"

@@ -1,4 +1,4 @@
-# doc master
+# THE DOC MASTER
 
 > Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment.
 
