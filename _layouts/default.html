@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} | {{ site.title | default: "THE DOC" }}</title>
+  <title>{{ page.title }} | {{ site.title | default: "DOC B" }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +29,11 @@
     .topbar { position: sticky; top: 0; height: var(--header-h); background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; z-index: 50; backdrop-filter: blur(8px); }
     .brand-group { display: flex; align-items: center; gap: 12px; }
     .brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.02em; }
-    .brand-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+    .brand-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
     .brand-title { color: var(--text); }
+    a { color: var(--text); }
+    a:visited { color: inherit; }
+    .brand:visited { color: var(--text); }
     .brand-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 7px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(59, 130, 246, 0.2); }
     .topbar-actions { display: flex; align-items: center; gap: 12px; }
     .theme-toggle, .menu-btn { background: var(--surface-subtle); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 12.5px; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
@@ -54,18 +57,16 @@
     .tree-category.is-active-branch > .tree-category-header { color: var(--accent); }
     .chevron-icon { width: 13px; height: 13px; color: var(--text-dim); transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); flex-shrink: 0; }
     .tree-category.is-expanded > .tree-category-header .chevron-icon { transform: rotate(90deg); }
-    .folder-icon { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; opacity: 0.85; }
     .category-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .category-count { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 9999px; background: var(--surface-subtle); color: var(--text-muted); border: 1px solid var(--border); }
     .tree-category-items { list-style: none; padding: 0; margin: 3px 0 6px 12px; border-left: 1.5px solid var(--border); padding-left: 10px; display: none; }
     .tree-category.is-expanded > .tree-category-items { display: block; }
     .tree-item { margin-bottom: 2px; }
     .tree-doc-link { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 9px; font-size: 12.5px; color: var(--text-muted); text-decoration: none; border-radius: 7px; font-weight: 500; transition: all 0.15s; position: relative; }
+    .tree-doc-link:visited { color: var(--text-muted); }
     .tree-doc-link:hover { background: var(--surface-subtle); color: var(--text); }
-    .tree-doc-link.active { background: var(--accent-active); color: var(--accent); font-weight: 600; }
+    .tree-doc-link.active, .tree-doc-link.active:visited { background: var(--accent-active); color: var(--accent); font-weight: 600; }
     .tree-doc-link.active::before { content: ''; position: absolute; left: -11px; top: 50%; transform: translateY(-50%); width: 3px; height: 16px; background: var(--accent); border-radius: 2px; }
-    .doc-icon { width: 13px; height: 13px; color: var(--text-dim); flex-shrink: 0; }
-    .tree-doc-link.active .doc-icon { color: var(--accent); }
     .tree-doc-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .badge-diff { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: var(--surface-subtle); color: var(--text-dim); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
     .tree-doc-link.active .badge-diff { background: rgba(37, 99, 235, 0.15); color: var(--accent); }
@@ -109,7 +110,7 @@
       <button type="button" class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
       <a href="{{ '/' | relative_url }}" class="brand">
         <span class="brand-icon">D</span>
-        <span class="brand-title">{{ site.title | default: "THE DOC" }}</span>
+        <span class="brand-title">{{ site.title | default: "DOC B" }}</span>
         <span class="brand-tag">Guides</span>
       </a>
     </div>
@@ -154,7 +155,6 @@
             <div class="tree-category {% if has_active %}is-active-branch is-expanded{% else %}is-expanded{% endif %}" id="cat-{{ cat_id }}" data-category="{{ group.name | escape }}">
               <button type="button" class="tree-category-header" onclick="toggleTreeCategory('{{ cat_id }}')" aria-expanded="true">
                 <svg class="chevron-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg>
-                <svg class="folder-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3.75 3A1.75 1.75 0 002 4.75v3.26a3.235 3.235 0 011.75-.51h12.5c.644 0 1.245.188 1.75.51V6.75A1.75 1.75 0 0016.25 5h-4.836a.25.25 0 01-.177-.073L9.823 3.513A1.75 1.75 0 008.586 3H3.75zM3.75 9A1.75 1.75 0 002 10.75v4.5C2 16.216 2.784 17 3.75 17h12.5A1.75 1.75 0 0018 15.25v-4.5A1.75 1.75 0 0016.25 9H3.75z" /></svg>
                 <span class="category-title">{{ group.name | default: "General Guides" }}</span>
                 <span class="category-count" title="{{ group.items.size }} technical guides">{{ group.items.size }}</span>
               </button>
@@ -162,7 +162,6 @@
                 {% for doc in group.items %}
                   <li class="tree-item" data-title="{{ doc.title | downcase }}" data-category="{{ group.name | downcase }}">
                     <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}">
-                      <svg class="doc-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" clip-rule="evenodd" /></svg>
                       <span class="tree-doc-text">{{ doc.title }}</span>
                       {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
                     </a>
@@ -174,7 +173,6 @@
         {% else %}
           <div class="tree-category is-expanded" id="cat-docs">
             <div class="tree-category-header" style="cursor: default;">
-              <svg class="folder-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3.75 3A1.75 1.75 0 002 4.75v3.26a3.235 3.235 0 011.75-.51h12.5c.644 0 1.245.188 1.75.51V6.75A1.75 1.75 0 0016.25 5h-4.836a.25.25 0 01-.177-.073L9.823 3.513A1.75 1.75 0 008.586 3H3.75zM3.75 9A1.75 1.75 0 002 10.75v4.5C2 16.216 2.784 17 3.75 17h12.5A1.75 1.75 0 0018 15.25v-4.5A1.75 1.75 0 0016.25 9H3.75z" /></svg>
               <span class="category-title">Technical Documentation</span>
               <span class="category-count">{{ site.docs.size }}</span>
             </div>
@@ -182,7 +180,6 @@
               {% for doc in site.docs %}
                 <li class="tree-item" data-title="{{ doc.title | downcase }}">
                   <a href="{{ doc.url | relative_url }}" class="tree-doc-link {% if page.url == doc.url %}active{% endif %}">
-                    <svg class="doc-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" clip-rule="evenodd" /></svg>
                     <span class="tree-doc-text">{{ doc.title }}</span>
                     {% if doc.read_time %}<span class="badge-diff">{{ doc.read_time }}</span>{% endif %}
                   </a>

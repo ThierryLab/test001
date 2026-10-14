@@ -2,7 +2,7 @@
 layout: guide
 title: "Data Privacy & Encryption at Rest"
 description: "Enterprise data compliance, AES-256-GCM encryption, envelope key hierarchies, and audit logging standards."
-category: "TEC SEC"
+category: "Security & Governance"
 difficulty: "Intermediate"
 read_time: "4 min"
 last_updated: "October 2026"
