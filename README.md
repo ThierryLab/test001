@@ -1,6 +1,6 @@
-# DocuCraft Documentation
+# DODOC
 
-> Modern technical guides and cookbook recipes for high-performance systems.
+> Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment.
 
 ## 🚀 Deployment Modes
 

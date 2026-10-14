@@ -1,7 +1,7 @@
 # _config.yml - Jekyll Documentation Site Configuration
-title: "DocuCraft Documentation"
-description: "Modern technical guides and cookbook recipes for high-performance systems."
-author: "Engineering Team"
+title: "DODOC"
+description: "Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment."
+author: "DocuCraft Engineering"
 url: "https://ThierryLab.github.io"
 baseurl: "/test001"
 
