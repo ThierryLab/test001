@@ -21,5 +21,4 @@ IPsec guarantees confidentiality by using encryption, data integrity using hashi
 
 ## Componeents
 
-![alt text](image-1.png)
-https://static.wixstatic.com/media/c7820a_d7e7c71de50041d397e826b813e2df2e~mv2.png/v1/fill/w_1280,h_720,al_c,q_90,enc_auto/c7820a_d7e7c71de50041d397e826b813e2df2e~mv2.png
+<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/4fe8a311-9606-47a4-b8cb-33af0a83e05e" />
