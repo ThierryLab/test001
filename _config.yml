@@ -4,17 +4,27 @@ description: "Enterprise technical documentation platform with interactive navig
 author: "DocuCraft Engineering"
 url: "https://ThierryLab.github.io"
 baseurl: "/test001"
+github_url: "https://github.com/ThierryLab/test001"
+
+# Header navigation (internal paths are prefixed with baseurl; full URLs are used as-is)
+nav_links:
+  - title: "Docs"
+    url: "/docs/introduction/"
+  - title: "API"
+    url: "/docs/api-reference/"
+  - title: "Deploy"
+    url: "/docs/production-deployment/"
 
 # Footer Configuration (set show_footer to false to completely hide the footer)
 show_footer: true
-footer_text: "© 2026 THE DOC MASTER. All rights reserved. Built with modern documentation standards."
+footer_text: "© 2026 THE DOC MASTER. All rights reserved."
 footer_links:
   - title: "Home"
     url: "/"
   - title: "Documentation"
     url: "/docs/introduction/"
   - title: "GitHub"
-    url: "https://ThierryLab.github.io"
+    url: "https://github.com/ThierryLab/test001"
 
 # Build Settings
 markdown: kramdown

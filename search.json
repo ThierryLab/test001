@@ -1,0 +1,20 @@
+---
+layout: null
+permalink: /search.json
+sitemap: false
+---
+{%- assign groups = site.docs | group_by: "category" -%}
+[
+{%- for group in groups -%}
+  {%- for doc in group.items -%}
+  {
+    "title": {{ doc.title | jsonify }},
+    "url": {{ doc.url | relative_url | jsonify }},
+    "category": {{ doc.category | jsonify }},
+    "subcategory": {{ doc.subcategory | jsonify }},
+    "description": {{ doc.description | strip_html | jsonify }},
+    "tags": {{ doc.tags | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+]

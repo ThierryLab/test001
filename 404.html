@@ -1,47 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>THE DOC MASTER – Page Not Found</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background: #090d16;
-        color: #f8fafc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
-      }
-      .box {
-        max-width: 440px;
-        padding: 32px;
-        background: #0f172a;
-        border: 1px solid #1e293b;
-        border-radius: 12px;
-      }
-      h1 { font-size: 24px; margin-bottom: 8px; color: #fff; }
-      p { font-size: 14px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; }
-      a {
-        display: inline-block;
-        background: #2563eb;
-        color: #fff;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 13px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="box">
-      <h1>Page Not Found</h1>
-      <p>The documentation page could not be found or GitHub Pages is still building your latest deployment.</p>
-      <a href="./">Open Documentation Home</a>
-    </div>
-  </body>
-</html>
+---
+layout: default
+title: Page not found
+sidebar: false
+permalink: /404.html
+sitemap: false
+---
+<section class="not-found">
+  <p class="not-found-code">404</p>
+  <h1>Page not found</h1>
+  <p>This page doesn't exist, or GitHub Pages is still building the latest deployment.</p>
+  <a class="btn btn-primary" href="{{ '/' | relative_url }}">Back to documentation</a>
+</section>

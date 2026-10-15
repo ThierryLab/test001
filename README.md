@@ -1,35 +1,329 @@
 # THE DOC MASTER
 
-> Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment.
+A modern, zero-JavaScript-framework documentation template for **GitHub Pages**, built on Jekyll.
+Write guides in Markdown, push to GitHub, and get a fast docs site with a collapsible navigation tree,
+instant search, light/dark/system themes, and an automatic table of contents.
 
-## 🚀 Deployment Modes
+**Live demo:** https://ThierryLab.github.io/test001/
 
-### Mode 1: Standalone Static Web Page (Zero Jekyll / Ruby Dependency)
-- No Ruby, no Bundler, no gem install required.
-- Standard Node.js static build in $< 30\text{s}$.
-- Deploys via `.github/workflows/deploy-static.yml` directly to GitHub Pages.
+---
 
-```bash
-# Install dependencies
-npm install
+## Contents
 
-# Run development server
-npm run dev
+1. [Features](#features)
+2. [Quick start (GitHub Pages)](#quick-start-github-pages)
+3. [Run locally](#run-locally)
+4. [Project structure](#project-structure)
+5. [Configuration (`_config.yml`)](#configuration-_configyml)
+6. [Writing guides](#writing-guides)
+7. [Pages without a sidebar](#pages-without-a-sidebar)
+8. [Customizing the look](#customizing-the-look)
+9. [Keyboard shortcuts](#keyboard-shortcuts)
+10. [Troubleshooting](#troubleshooting)
 
-# Build standalone production bundle
-npm run build
-```
+---
 
-### Mode 2: Jekyll SSG (Optional)
-If you prefer Jekyll and Ruby:
+## Features
+
+- **Navigation tree** grouped by category → subcategory, with filter, expand/collapse, compact mode, and drag-to-resize.
+- **Collapsible sidebar** (header button, `Ctrl+B` or `[`), remembered between visits.
+- **Search** (`Ctrl/⌘+K` or `/`) across titles, categories, descriptions and tags.
+- **Light / Dark / System theme** with no flash on page load.
+- **Guide pages** with breadcrumbs, meta chips, reading-progress bar, "On this page" TOC with scroll highlighting, heading anchors and previous/next links.
+- **Code blocks** with language label, syntax highlighting and copy button.
+- **Responsive**: mobile drawer navigation, TOC hidden on narrow screens.
+- Plain HTML/CSS/JS, no build tools or Node.js required.
+
+---
+
+## Quick start (GitHub Pages)
+
+1. **Create your repository** from this template (or fork / copy the files into a new repo).
+2. **Edit `_config.yml`** and set at least:
+   ```yaml
+   title: "My Project Docs"
+   description: "Short description shown on the homepage and in search engines."
+   url: "https://<your-user>.github.io"
+   baseurl: "/<your-repo-name>"      # use "" if the repo is <your-user>.github.io
+   github_url: "https://github.com/<your-user>/<your-repo-name>"
+   ```
+3. **Enable GitHub Pages via Actions:**
+   Repository → **Settings** → **Pages** → **Build and deployment** → **Source** = **GitHub Actions**
+   (not "Deploy from a branch").
+4. **Push to `main`.** The workflow in `.github/workflows/deploy-jekyll.yml` builds and deploys the site.
+5. Open the **Actions** tab, wait for the green check, then visit
+   `https://<your-user>.github.io/<your-repo-name>/`.
+
+> The workflow runs on every push to `main` and can also be started manually from the Actions tab (**Run workflow**).
+
+---
+
+## Run locally
+
+Requirements: [Ruby](https://www.ruby-lang.org/) 3.x and Bundler.
+
 ```bash
 bundle install
-bundle exec jekyll serve
+bundle exec jekyll serve --livereload
 ```
 
-## 📦 Fixing the "404 File Not Found" on GitHub Pages
-1. Go to your GitHub repository -> **Settings** -> **Pages**.
-2. Under **Build and deployment** -> **Source**, select **GitHub Actions** (NOT "Deploy from a branch").
-3. Push your repository to GitHub.
-4. Click the **Actions** tab in GitHub and verify the workflow completes with a green checkmark.
-5. Your site is live at: https://ThierryLab.github.io/test001/
+Open http://127.0.0.1:4000/<baseurl>/ (for this repo: http://127.0.0.1:4000/test001/).
+
+> Changes to `_config.yml` are **not** picked up by `jekyll serve` automatically. Restart the server after editing it.
+
+On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (choose the version *with Devkit*), then run `gem install bundler`.
+
+---
+
+## Project structure
+
+```
+.
+├── _config.yml              # Site settings, navigation and footer links
+├── _docs/                   # Your guides (one Markdown file per page)
+├── _includes/               # Reusable page parts
+│   ├── head.html            #   <head>, fonts, theme pre-load script
+│   ├── header.html          #   top bar: brand, nav links, search, theme, sidebar toggle
+│   ├── sidebar.html         #   navigation tree
+│   ├── breadcrumbs.html     #   Docs › Category › Subcategory
+│   ├── toc.html             #   "On this page" panel
+│   ├── pager.html           #   previous / next guide cards
+│   ├── search-modal.html    #   search dialog
+│   └── footer.html          #   site footer
+├── _layouts/
+│   ├── default.html         # Page shell (header, sidebar, footer, scripts)
+│   └── guide.html           # Guide page (extends default)
+├── assets/
+│   ├── css/main.css         # All styles and design tokens
+│   └── js/main.js           # Theme, sidebar, tree, TOC, search, shortcuts
+├── index.html               # Homepage (hero + category cards)
+├── 404.html                 # Not-found page
+├── search.json              # Generated search index
+├── Gemfile                  # Ruby dependencies for local builds
+└── .github/workflows/       # GitHub Pages deployment
+```
+
+---
+
+## Configuration (`_config.yml`)
+
+| Key | Purpose |
+|---|---|
+| `title` | Site name shown in the header, footer, homepage and browser tab. |
+| `description` | Homepage subtitle, footer text and default meta description. |
+| `url` | Your GitHub Pages host, e.g. `https://user.github.io`. |
+| `baseurl` | Repo sub-path, e.g. `/my-docs`. Use `""` for a user/org site or custom domain. |
+| `github_url` | Adds a GitHub icon to the header. Remove the line to hide it. |
+| `nav_links` | Links shown in the header (hidden on screens under 1024 px). |
+| `show_footer` | `false` hides the footer site-wide. |
+| `footer_text` | Copyright line at the bottom of the footer. |
+| `footer_links` | Links in the footer "Resources" column. |
+
+### Links: internal vs external
+
+In `nav_links` and `footer_links`:
+
+- **Internal** paths start with `/` and are automatically prefixed with `baseurl`:
+  `url: "/docs/introduction/"`
+- **External** links must be full URLs (contain `://`) and are used as-is. External footer links open in a new tab:
+  `url: "https://github.com/user/repo"`
+
+```yaml
+nav_links:
+  - title: "Docs"
+    url: "/docs/introduction/"
+  - title: "Changelog"
+    url: "https://github.com/user/repo/releases"
+```
+
+A header link is highlighted when its `url` matches the current page.
+
+---
+
+## Writing guides
+
+### 1. Create a file
+
+Add a Markdown file to `_docs/`. The file name becomes the URL:
+
+```
+_docs/getting-started.md  →  /docs/getting-started/
+```
+
+### 2. Add front matter
+
+```yaml
+---
+layout: guide
+title: "Getting Started"
+description: "One-sentence summary shown under the title, on cards and in search."
+category: "Getting Started"
+subcategory: "Fundamentals"
+difficulty: "Beginner"
+read_time: "5 min"
+last_updated: "October 2026"
+tags: ["Setup", "Install"]
+---
+```
+
+| Field | Required | Used for |
+|---|---|---|
+| `layout` | yes | Always `guide` for documentation pages. |
+| `title` | yes | Page title, sidebar, search, pager, homepage cards. |
+| `description` | recommended | Lead paragraph, search results, SEO meta description. |
+| `category` | recommended | Top-level group in the sidebar, homepage card, footer and breadcrumbs. |
+| `subcategory` | optional | Second-level group in the sidebar. Omit it to list the guide directly under its category. |
+| `difficulty` | optional | Chip under the title. |
+| `read_time` | optional | Chip under the title and on homepage cards. |
+| `last_updated` | optional | Chip under the title. |
+| `tags` | optional | Extra search keywords. |
+| `show_footer` | optional | `false` hides the footer on this page only. |
+
+### 3. Write the content
+
+```markdown
+# Getting Started
+
+Intro paragraph…
+
+## Installation
+
+Steps…
+
+### Windows
+
+Details…
+```
+
+- The first `# Heading` in a guide is hidden, because the layout already shows `title` as the page heading. You can keep it or remove it.
+- Every `##` and `###` heading appears in the **On this page** panel and gets a `#` anchor link.
+- Fenced code blocks get syntax highlighting, a language label and a **Copy** button. Always specify the language:
+
+  ````markdown
+  ```bash
+  npm install
+  ```
+  ````
+
+  Highlighting is included for TypeScript/JavaScript, Python, Go, Rust, Bash, JSON, CSS and HTML.
+  To add more languages, add a Prism component script in `_layouts/default.html`, e.g.
+  `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js`.
+- Blockquotes (`> Note: …`) are styled as callouts; tables scroll horizontally on small screens.
+
+### Ordering
+
+Guides are ordered by **file name**. Categories appear in the order their first guide appears.
+To control order, prefix file names with numbers and keep the URL clean with a `permalink`:
+
+```yaml
+# _docs/01-introduction.md
+permalink: /docs/introduction/
+```
+
+The same order is used by the sidebar, homepage cards, footer and previous/next links.
+
+### Linking between guides
+
+Always use `relative_url` so links work with any `baseurl`:
+
+```liquid
+[Read the API reference]({{ '/docs/api-reference/' | relative_url }})
+```
+
+---
+
+## Pages without a sidebar
+
+Any page can hide the navigation tree with `sidebar: false`. The homepage and 404 page already do this.
+Use the `default` layout for standalone pages (about, changelog, etc.):
+
+```yaml
+---
+layout: default
+title: "Changelog"
+sidebar: false
+---
+```
+
+---
+
+## Customizing the look
+
+All styles are in `assets/css/main.css`. Most changes only need the **design tokens** at the top of the file:
+
+```css
+:root {                         /* light theme */
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --bg: #ffffff;
+  --text: #09090b;
+  --sidebar-w: 280px;           /* default sidebar width */
+  --header-h: 60px;
+}
+[data-theme="dark"] {           /* dark theme */
+  --accent: #38bdf8;
+  --bg: #09090b;
+}
+```
+
+| What | Where |
+|---|---|
+| Accent / brand color | `--accent`, `--accent-hover`, `--accent-soft`, `--accent-active` in both theme blocks, plus the gradients in `.brand-icon`, `.hero-title span` and `.not-found-code`. |
+| Fonts | Google Fonts `<link>` in `_includes/head.html` and `--font-sans` / `--font-mono` in `main.css`. |
+| Logo letter / badge | `brand-icon` and `brand-tag` in `_includes/header.html` and `_includes/footer.html`. Replace the letter with an `<img>` or `<svg>` to use a real logo. |
+| Homepage hero and cards | `index.html`. |
+| Footer columns | `_includes/footer.html`. |
+| 404 text | `404.html`. |
+
+### Theme behavior
+
+- The theme button cycles **Light → Dark → System**. **System** follows the OS setting and updates live.
+- New visitors get **System**. The choice is saved in the browser (`localStorage`).
+
+---
+
+## Keyboard shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl+K` / `⌘K` or `/` | Open search |
+| `↑` `↓` then `Enter` | Choose a search result |
+| `Esc` | Close search / mobile menu, or clear the sidebar filter |
+| `Ctrl+B` or `[` | Show / hide the sidebar (desktop) |
+
+Double-click the sidebar edge to reset its width.
+
+---
+
+## Troubleshooting
+
+**The site shows 404 on GitHub Pages**
+- Settings → Pages → Source must be **GitHub Actions**.
+- Check the **Actions** tab for a failed run and open its log.
+- The first deployment can take a few minutes.
+
+**Page loads but has no styles, or links are broken**
+- `baseurl` doesn't match the repository name. For `github.com/user/my-docs` use `baseurl: "/my-docs"`.
+- For a user site (`user.github.io` repo) or a custom domain use `baseurl: ""`.
+- Use `relative_url` for any internal link you write by hand.
+
+**A new guide doesn't appear**
+- The file must be in `_docs/` and start with front matter (`---` lines).
+- Check that `layout: guide` and `title` are set.
+- Locally, restart `jekyll serve` if you changed `_config.yml`.
+
+**Search returns nothing**
+- Open `<site>/search.json` in the browser. It should list your guides.
+- Search covers titles, categories, subcategories, descriptions and tags, not the full page text.
+
+**Code isn't highlighted**
+- Add the language after the opening fence (```` ```python ````) and make sure its Prism component is loaded in `_layouts/default.html`.
+
+**Sidebar/theme looks "stuck"**
+- Settings are stored in the browser. Clear site data, or run `localStorage.clear()` in the browser console.
+
+---
+
+## License
+
+MIT. Use it, modify it, ship it.

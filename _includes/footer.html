@@ -1,0 +1,45 @@
+{% assign show_footer = page.show_footer | default: site.show_footer %}
+{% if show_footer != false %}
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand-col">
+        <a href="{{ '/' | relative_url }}" class="brand">
+          <span class="brand-icon">D</span>
+          <span class="brand-title">{{ site.title | default: "THE DOC MASTER" }}</span>
+        </a>
+        <p class="footer-desc">{{ site.description }}</p>
+      </div>
+
+      {% assign footer_groups = site.docs | group_by: "category" %}
+      <div class="footer-col">
+        <h4 class="footer-col-title">Guides</h4>
+        <ul class="footer-link-list">
+          {% for group in footer_groups limit: 6 %}
+            {% assign first_doc = group.items | first %}
+            <li><a href="{{ first_doc.url | relative_url }}">{{ group.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Resources</h4>
+        <ul class="footer-link-list">
+          {% for link in site.footer_links %}
+            {% if link.url contains '://' %}
+              <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.title }} ↗</a></li>
+            {% else %}
+              <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span>{{ site.footer_text | default: "© THE DOC MASTER" }}</span>
+      <a href="#top" class="footer-top-link" data-scroll-top>Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+{% endif %}
