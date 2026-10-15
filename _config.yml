@@ -1,14 +1,14 @@
 # _config.yml - Jekyll Documentation Site Configuration
-title: "THE DOC MASTER"
+title: " MASTER"
 description: "Enterprise technical documentation platform with interactive navigation tree, multi-language snippets, and zero-dependency static deployment."
-author: "DocuCraft Engineering"
+author: "DC Engineering"
 url: "https://ThierryLab.github.io"
 baseurl: "/test001"
 github_url: "https://github.com/ThierryLab/test001"
 
 # Header navigation (internal paths are prefixed with baseurl; full URLs are used as-is)
 nav_links:
-  - title: "Docs"
+  - title: "M Docs"
     url: "/docs/introduction/"
   - title: "API"
     url: "/docs/api-reference/"
