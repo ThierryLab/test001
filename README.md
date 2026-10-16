@@ -124,6 +124,7 @@ On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (c
 | `nav_links` | Extra header links shown after the classification tabs (hidden on screens under 1024 px). |
 | `show_footer` | `false` hides the footer site-wide. |
 | `footer_text` | Copyright line at the bottom of the footer. |
+| `footer_max_sections` | Max classifications listed in the footer (default `6`). Extra ones are replaced by an "All N sections →" link to the homepage. |
 | `footer_links` | Links in the footer "Resources" column. |
 
 ### Links: internal vs external

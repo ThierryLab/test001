@@ -519,8 +519,10 @@ pre code { font-family: inherit !important; background: transparent; padding: 0;
 .footer-desc { margin: 0; max-width: 360px; font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
 .footer-col-title { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: 0; }
 .footer-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.footer-link-list a { font-size: 13.5px; color: var(--text-muted); transition: color .15s; }
+.footer-link-list a { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; color: var(--text-muted); transition: color .15s; }
 .footer-link-list a:hover { color: var(--text); }
+.footer-link-list a.footer-more-link { color: var(--accent); font-weight: 500; }
+.footer-col { min-width: 0; }
 .footer-bottom-bar {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding-top: 24px; border-top: 1px solid var(--border-subtle);
