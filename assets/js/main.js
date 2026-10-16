@@ -379,12 +379,12 @@
     if (searchIndex) return Promise.resolve(searchIndex);
     return fetch(body.getAttribute('data-search-url'))
       .then(function (r) { return r.json(); })
-      .then(function (data) { searchIndex = Array.isArray(data) ? data : []; return searchIndex; })
+      .then(function (data) { searchIndex = Array.isArray(data) ? data.filter(Boolean) : []; return searchIndex; })
       .catch(function () { searchIndex = []; return searchIndex; });
   }
   function scoreDoc(doc, terms) {
     var title = (doc.title || '').toLowerCase();
-    var rest = [doc.category, doc.subcategory, doc.description, (doc.tags || []).join(' ')].join(' ').toLowerCase();
+    var rest = [doc.classification, doc.category, doc.subcategory, doc.description, (doc.tags || []).join(' ')].join(' ').toLowerCase();
     var score = 0;
     for (var i = 0; i < terms.length; i++) {
       var t = terms[i];
@@ -422,12 +422,13 @@
 
     var lastGroup = null;
     results.forEach(function (doc, i) {
-      if (!terms.length && doc.category !== lastGroup) {
-        lastGroup = doc.category;
+      var groupName = [doc.classification, doc.category].filter(Boolean).join(' › ') || 'General';
+      if (!terms.length && groupName !== lastGroup) {
+        lastGroup = groupName;
         var label = document.createElement('li');
         label.className = 'search-group-label';
         label.setAttribute('role', 'presentation');
-        label.textContent = doc.category || 'General';
+        label.textContent = groupName;
         resultsEl.appendChild(label);
       }
       var li = document.createElement('li');
@@ -440,7 +441,7 @@
       var desc = document.createElement('span');
       desc.className = 'search-result-desc';
       desc.textContent = terms.length
-        ? [doc.category, doc.subcategory].filter(Boolean).join(' › ')
+        ? [doc.classification, doc.category, doc.subcategory].filter(Boolean).join(' › ')
         : (doc.description || '');
       li.appendChild(title);
       li.appendChild(desc);

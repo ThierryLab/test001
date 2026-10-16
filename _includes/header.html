@@ -15,6 +15,13 @@
     </div>
 
     <nav class="topnav" aria-label="Primary">
+      {% include classifications.html %}
+      {% for cls in doc_classes %}
+        {% include class-first-doc.html name=cls %}
+        {% if class_first_doc %}
+        <a href="{{ class_first_doc.url | relative_url }}" class="topnav-link{% if page.classification == cls %} active{% endif %}"{% if page.classification == cls %} aria-current="true"{% endif %}>{{ cls }}</a>
+        {% endif %}
+      {% endfor %}
       {% for link in site.nav_links %}
         {% if link.url contains '://' %}{% assign href = link.url %}{% else %}{% assign href = link.url | relative_url %}{% endif %}
         {% assign link_path = link.url | split: '#' | first %}

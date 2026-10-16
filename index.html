@@ -3,7 +3,6 @@ layout: default
 title: Documentation
 sidebar: false
 ---
-{% assign doc_groups = site.docs | group_by: "category" %}
 <section class="hero">
   <h1 class="visually-hidden">{{ site.title | default: "THE DOC MASTER" }}</h1>
   <button type="button" class="hero-search" data-search-open aria-label="Search documentation">
@@ -14,9 +13,15 @@ sidebar: false
 </section>
 
 <section class="home-section">
-  <h2 class="home-section-title">Browse by category</h2>
-  <p class="home-section-desc">Pick a topic to jump straight into the guides.</p>
-  <div class="card-grid">
+  {% include classifications.html %}
+  {% for cls in doc_classes %}
+  {% assign cls_docs = site.docs | where: "classification", cls %}
+  {% if cls_docs.size > 0 %}
+  {% assign doc_groups = cls_docs | group_by: "category" %}
+  <div class="home-class">
+    <h2 class="home-section-title">{{ cls }}</h2>
+    <p class="home-section-desc">{{ cls_docs.size }} {% if cls_docs.size == 1 %}guide{% else %}guides{% endif %} in {{ doc_groups.size }} {% if doc_groups.size == 1 %}category{% else %}categories{% endif %}</p>
+    <div class="card-grid">
     {% for group in doc_groups %}
     <div class="cat-card">
       <div class="cat-card-head">
@@ -30,5 +35,8 @@ sidebar: false
       </ul>
     </div>
     {% endfor %}
+    </div>
   </div>
+  {% endif %}
+  {% endfor %}
 </section>

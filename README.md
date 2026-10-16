@@ -25,6 +25,7 @@ instant search, light/dark/system themes, and an automatic table of contents.
 
 ## Features
 
+- **Three-level organization**: classification (header tabs) → category → subcategory.
 - **Navigation tree** grouped by category → subcategory, with filter, expand/collapse, compact mode, and drag-to-resize.
 - **Collapsible sidebar** (header button, `Ctrl+B` or `[`), remembered between visits.
 - **Search** (`Ctrl/⌘+K` or `/`) across titles, categories, descriptions and tags.
@@ -83,9 +84,11 @@ On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (c
 ├── _docs/                   # Your guides (one Markdown file per page)
 ├── _includes/               # Reusable page parts
 │   ├── head.html            #   <head>, fonts, theme pre-load script
-│   ├── header.html          #   top bar: brand, nav links, search, theme, sidebar toggle
-│   ├── sidebar.html         #   navigation tree
-│   ├── breadcrumbs.html     #   Docs › Category › Subcategory
+│   ├── header.html          #   top bar: brand, classification tabs, search, theme, sidebar toggle
+│   ├── sidebar.html         #   navigation tree (current classification only)
+│   ├── breadcrumbs.html     #   Home › Classification › Category › Subcategory
+│   ├── classifications.html #   helper: ordered list of classifications
+│   ├── class-first-doc.html #   helper: first guide of a classification
 │   ├── toc.html             #   "On this page" panel
 │   ├── pager.html           #   previous / next guide cards
 │   ├── search-modal.html    #   search dialog
@@ -96,7 +99,7 @@ On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (c
 ├── assets/
 │   ├── css/main.css         # All styles and design tokens
 │   └── js/main.js           # Theme, sidebar, tree, TOC, search, shortcuts
-├── index.html               # Homepage (search bar + category cards)
+├── index.html               # Homepage (search bar + category cards per classification)
 ├── 404.html                 # Not-found page
 ├── search.json              # Generated search index
 ├── Gemfile                  # Ruby dependencies for local builds
@@ -116,7 +119,9 @@ On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (c
 | `github_url` | Adds a GitHub icon to the header. Remove the line to hide it. |
 | `brand_icon` | Short text (1–2 characters or an emoji) shown in the logo square. `""` hides the square. |
 | `brand_tag` | Small badge next to the title (e.g. `Guides`, `v2.0`). `""` hides it. |
-| `nav_links` | Links shown in the header (hidden on screens under 1024 px). |
+| `classifications` | Order of the top-level sections shown as header tabs. Classifications used in guides but not listed here are appended. |
+| `defaults` → `classification` | Classification given to guides that don't set one (default `"Docs"`). |
+| `nav_links` | Extra header links shown after the classification tabs (hidden on screens under 1024 px). |
 | `show_footer` | `false` hides the footer site-wide. |
 | `footer_text` | Copyright line at the bottom of the footer. |
 | `footer_links` | Links in the footer "Resources" column. |
@@ -132,13 +137,40 @@ In `nav_links` and `footer_links`:
 
 ```yaml
 nav_links:
-  - title: "Docs"
-    url: "/docs/introduction/"
   - title: "Changelog"
     url: "https://github.com/user/repo/releases"
 ```
 
 A header link is highlighted when its `url` matches the current page.
+
+### Classifications (header tabs)
+
+Guides are organized in three levels:
+
+```
+Classification  (header tab)      e.g. Docs, API, Deploy
+└─ Category     (sidebar group)   e.g. Getting Started
+   └─ Subcategory (sidebar subgroup) e.g. Fundamentals
+      └─ Guide
+```
+
+- Each header tab links to the first guide of that classification.
+- The sidebar, previous/next links and the active tab only show guides from the **current** classification.
+- The homepage shows one section of category cards per classification; search covers all of them.
+- On screens under 1024 px the tabs move to the top of the sidebar.
+
+**Add a new classification:** set `classification: "Tutorials"` in a guide's front matter. The tab appears automatically.
+To control the order, add it to the list in `_config.yml`:
+
+```yaml
+classifications:
+  - "Docs"
+  - "Tutorials"
+  - "API"
+  - "Deploy"
+```
+
+**Rename a classification:** change the value in every guide that uses it (and in `classifications` / `defaults`).
 
 ---
 
@@ -159,6 +191,7 @@ _docs/getting-started.md  →  /docs/getting-started/
 layout: guide
 title: "Getting Started"
 description: "One-sentence summary shown under the title, on cards and in search."
+classification: "Docs"
 category: "Getting Started"
 subcategory: "Fundamentals"
 difficulty: "Beginner"
@@ -170,10 +203,11 @@ tags: ["Setup", "Install"]
 
 | Field | Required | Used for |
 |---|---|---|
-| `layout` | yes | Always `guide` for documentation pages. |
+| `layout` | no | `guide` (set automatically for files in `_docs/`). |
 | `title` | yes | Page title, sidebar, search, pager, homepage cards. |
 | `description` | recommended | Lead paragraph, search results, SEO meta description. |
-| `category` | recommended | Top-level group in the sidebar, homepage card, footer and breadcrumbs. |
+| `classification` | optional | Header tab the guide belongs to. Defaults to `"Docs"` (see `defaults` in `_config.yml`). |
+| `category` | recommended | Group in the sidebar, homepage card and breadcrumbs. |
 | `subcategory` | optional | Second-level group in the sidebar. Omit it to list the guide directly under its category. |
 | `difficulty` | optional | Chip under the title. |
 | `read_time` | optional | Chip under the title and on homepage cards. |
@@ -214,7 +248,7 @@ Details…
 
 ### Ordering
 
-Guides are ordered by **file name**. Categories appear in the order their first guide appears.
+Classifications follow the `classifications` list in `_config.yml`. Within a classification, guides are ordered by **file name**, and categories appear in the order their first guide appears.
 To control order, prefix file names with numbers and keep the URL clean with a `permalink`:
 
 ```yaml

@@ -1,0 +1,7 @@
+{%- comment -%}Sets `doc_classes`: classifications in config order, then any others found in docs.{%- endcomment -%}
+{%- assign found_classes = site.docs | map: "classification" | compact | uniq -%}
+{%- if site.classifications -%}
+  {%- assign doc_classes = site.classifications | concat: found_classes | uniq -%}
+{%- else -%}
+  {%- assign doc_classes = found_classes -%}
+{%- endif -%}

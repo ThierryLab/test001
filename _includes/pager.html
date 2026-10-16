@@ -1,7 +1,12 @@
 {% assign prev_doc = nil %}
 {% assign next_doc = nil %}
 {% assign found_current = false %}
-{% assign pager_groups = site.docs | group_by: "category" %}
+{% if page.classification %}
+  {% assign pager_docs = site.docs | where: "classification", page.classification %}
+{% else %}
+  {% assign pager_docs = site.docs %}
+{% endif %}
+{% assign pager_groups = pager_docs | group_by: "category" %}
 {% for cat_group in pager_groups %}
   {% assign pager_subs = cat_group.items | group_by: "subcategory" %}
   {% for sub_group in pager_subs %}

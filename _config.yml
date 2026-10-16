@@ -7,17 +7,19 @@ baseurl: "/test001"
 github_url: "https://github.com/ThierryLab/test001"
 
 # Branding (leave brand_tag empty to hide the badge next to the title)
-brand_icon: "D"
-brand_tag: "Guides"
+brand_icon: "TPF"
+brand_tag: "Labs"
 
-# Header navigation (internal paths are prefixed with baseurl; full URLs are used as-is)
-nav_links:
-  - title: "M Docs"
-    url: "/docs/introduction/"
-  - title: "API"
-    url: "/docs/api-reference/"
-  - title: "Deploy"
-    url: "/docs/production-deployment/"
+# Classifications: top-level sections shown in the header nav. Each guide picks one with
+# `classification:` in its front matter (guides without it use the default set below).
+# This list controls the order; classifications not listed are appended automatically.
+classifications:
+  - "Docs"
+  - "API"
+  - "Deploy"
+
+# Extra header links shown after the classifications (optional; full URLs are used as-is)
+nav_links: []
 
 # Footer Configuration (set show_footer to false to completely hide the footer)
 show_footer: true
@@ -45,6 +47,14 @@ collections:
   docs:
     output: true
     permalink: /docs/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "guide"
+      classification: "Docs"
 
 # Exclude unnecessary build files and ruby vendor folders
 exclude:
