@@ -33,6 +33,8 @@ footer_links:
     url: "https://github.com/ThierryLab/test001"
 
 # Build Settings
+# Full rebuilds keep the header/sidebar in sync on every page.
+incremental: false
 markdown: kramdown
 highlighter: rouge
 

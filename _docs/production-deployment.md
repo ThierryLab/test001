@@ -2,7 +2,6 @@
 layout: guide
 title: "GitHub Pages & Continuous Integration"
 description: "Comprehensive guide to zero-downtime GitHub Actions deployments, branch publishing, and automated builds."
-classification: "Deploy"
 category: "Deployment & Operations"
 subcategory: "GitHub Pages"
 difficulty: "Intermediate"

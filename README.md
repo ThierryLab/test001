@@ -348,6 +348,11 @@ Double-click the sidebar edge to reset its width.
 - Check that `layout: guide` and `title` are set.
 - Locally, restart `jekyll serve` if you changed `_config.yml`.
 
+**A header tab is missing, outdated or differs between pages**
+- A tab exists as long as at least one guide uses that classification. Guides without `classification` count as the default (`"Docs"`).
+- Locally, don't use `jekyll serve --incremental`: it only rebuilds changed pages, so other pages keep the old header. Restart the server after editing `_config.yml`.
+- GitHub Pages caches pages for about 10 minutes. After a deploy, hard-refresh (`Ctrl+Shift+R` / `⌘+Shift+R`).
+
 **Search returns nothing**
 - Open `<site>/search.json` in the browser. It should list your guides.
 - Search covers titles, categories, subcategories, descriptions and tags, not the full page text.
