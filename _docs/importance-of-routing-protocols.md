@@ -21,7 +21,7 @@ Every engineer starts with static routes. You configure `ip route 10.2.0.0/24 19
 
 Static routing fails for three practical reasons:
 
-1. **Configuration scaling is brutal:** In a mesh of $N$ routers, static paths require $O(N^2)$ definitions. Add a subnet, and you must reconfigure every router.
+1. **Configuration scaling is brutal:** In a mesh of $N$ routers, static paths require $O(N^2)$ definitions. Add a subnet, and you must reconfigure nearly every router.
 2. **Zero failure awareness:** A static route points to an IP address or interface. If an upstream carrier link drops three hops away, your local interface stays up. Your router keeps shoving packets down a dead path, silently dropping traffic into a black hole.
 3. **No automatic recovery:** When an outage happens at 2 AM, a static network sits broken until an on-call engineer logs in over an out-of-band console to rewrite routes by hand.
 
@@ -33,23 +33,23 @@ Dynamic routing protocols replace guesswork and manual tables with automated, re
 
 ### 1. Topology Discovery and State Tracking
 
-Routers send periodic keepalives (hellos) across local links. When routers discover each other, they form neighbor adjacencies, negotiate capabilities, and exchange reachable prefixes. When a link drops or a new subnet spins up, the change propagates across the topology in milliseconds.
+Routers send periodic keepalives (hellos) across local links. When routers discover each other, they form neighbor adjacencies, negotiate capabilities, and exchange reachable prefixes. When a link drops or a new subnet spins up, the change propagates across the topology, often in under a second.
 
 ### 2. Best-Path Computation
 
 Every protocol runs an algorithm to choose the cleanest path to every destination:
 
 - **Distance-vector protocols** count hops or composite metrics.
-- **Link-state protocols** map the full graph and run Dijkstra's algorithm to compute the shortest tree.
+- **Link-state protocols** map the full graph and run Dijkstra's algorithm to compute a shortest-path tree.
 - **Path-vector protocols (BGP)** evaluate administrative attributes, autonomous system path lengths, and business policies.
 
 ### 3. Loop Prevention
 
-Nothing destroys a network faster than an endless packet cycle. Routing protocols enforce strict loop-mitigation mechanisms: split-horizon and poison reverse in classic distance-vector protocols, topological graph validation in link-state protocols, and AS-path inspection in BGP.
+A routing loop bounces packets around until their TTL expires, burning bandwidth along the way. Routing protocols enforce strict loop-mitigation mechanisms: split-horizon and poison reverse in classic distance-vector protocols, consistent databases and SPF in link-state protocols, and AS-path inspection in BGP.
 
 ### 4. Equal-Cost Multi-Path (ECMP)
 
-Modern networks rarely rely on a single pipe. When multiple paths share the identical lowest metric, routing protocols install multiple next-hops into the Forwarding Information Base (FIB). Hardware switches hash packet headers across these links, doubling or quadrupling available bandwidth without complex link bonding.
+Modern networks rarely rely on a single pipe. When multiple paths share the identical lowest metric, routing protocols install multiple next-hops into the Forwarding Information Base (FIB). Routers hash each flow onto one of these paths, multiplying total capacity (any single flow still uses one link).
 
 ## Interior vs Exterior: Splitting the Work
 
@@ -57,26 +57,26 @@ No single protocol handles every routing scenario. The networking world divides 
 
 ### Interior Gateway Protocols (IGPs)
 
-IGPs operate inside a single administrative boundary—your company's data centers, campus offices, or internal cloud VPCs. You own all the hardware, so mutual trust is high.
+IGPs operate inside a single administrative boundary—your company's data centers, campuses, and branch offices. You own all the hardware, so mutual trust is high.
 
 - **The primary goal:** Raw convergence speed and optimal pathing.
-- **The main players:** OSPF and IS-IS. Both maintain an identical map of the internal network and recalculate paths in milliseconds when links flap.
+- **The main players:** OSPF and IS-IS. Every router in an area keeps an identical map of it, and a well-tuned network can reconverge in under a second when links fail.
 - For a deep dive into how these two compare under load, check out our [IS-IS vs OSPF guide]({{ '/docs/isis-vs-ospf/' | relative_url }}).
 
 ### Exterior Gateway Protocols (EGPs)
 
-EGPs operate between separate organizations, internet service providers, and cloud giants. Mutual trust does not exist.
+EGPs operate between separate organizations, internet service providers, and cloud giants. Trust is limited.
 
 - **The primary goal:** Policy control, route filtering, and scale.
-- **The gold standard:** Border Gateway Protocol (BGP). BGP does not care about finding the fastest physical path; it cares about enforcing business agreements (e.g., "never send traffic from transit provider A through provider B"). It holds over 900,000 public internet prefixes without breaking a sweat.
+- **The gold standard:** Border Gateway Protocol (BGP). BGP does not care about finding the fastest physical path; it cares about enforcing business agreements (e.g., "don't carry traffic between my two upstream providers for free"). It carries the full internet routing table, now more than a million IPv4 prefixes.
 
 ## Production Gotchas to Watch For
 
 Even with dynamic protocols handling the heavy lifting, real-world networks fail in subtle ways if misconfigured:
 
-- **Route Flapping:** A flaky physical cable bouncing up and down triggers continuous route recalculations. Without route dampening, this burns routing engine CPU across the entire network.
+- **Route Flapping:** A flaky physical cable bouncing up and down triggers continuous route recalculations. Without dampening or SPF throttling, this burns router CPU across the entire network.
 - **Asymmetric Routing:** Packets travel out over link A but return over link B. If stateful firewalls sit along the path, return packets get dropped because the inspection engine never saw the initial SYN handshake.
-- **Suboptimal Redistribution:** Leaking routes between different protocols (like BGP into OSPF) without route tags easily creates routing loops and sub-optimal routing paths.
+- **Careless Redistribution:** Leaking routes between different protocols (like BGP into OSPF) without route tags easily creates routing loops and suboptimal paths.
 
 ## Next Steps
 
