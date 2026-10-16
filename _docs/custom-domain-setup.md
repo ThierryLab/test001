@@ -2,6 +2,7 @@
 layout: guide
 title: "Custom Domains, SSL & DNS"
 description: "Configure custom domains like docs.yourcompany.com with automatic Let’s Encrypt SSL and CDN acceleration."
+classification: "cat101"
 category: "Deployment & Operations"
 subcategory: "GitHub Pages"
 difficulty: "Intermediate"
