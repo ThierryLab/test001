@@ -2,7 +2,7 @@
 layout: guide
 title: "Standalone Static Web Export"
 description: "How to build and distribute pure, zero-dependency HTML/CSS/JS bundles for internal intranet or air-gapped systems."
-classification: "Deploy"
+classification: "cat101"
 category: "Deployment & Operations"
 subcategory: "Static Bundles"
 difficulty: "Intermediate"
