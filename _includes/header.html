@@ -8,10 +8,10 @@
       </button>
       {% endif %}
       <a href="{{ '/' | relative_url }}" class="brand">
-        <span class="brand-icon">D</span>
+        {% if site.brand_icon != "" %}<span class="brand-icon">{{ site.brand_icon | default: "D" }}</span>{% endif %}
         <span class="brand-title">{{ site.title | default: "THE DOC MASTER" }}</span>
       </a>
-      <span class="brand-tag">Guides</span>
+      {% if site.brand_tag and site.brand_tag != "" %}<span class="brand-tag">{{ site.brand_tag }}</span>{% endif %}
     </div>
 
     <nav class="topnav" aria-label="Primary">

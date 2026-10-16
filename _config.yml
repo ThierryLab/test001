@@ -6,6 +6,10 @@ url: "https://ThierryLab.github.io"
 baseurl: "/test001"
 github_url: "https://github.com/ThierryLab/test001"
 
+# Branding (leave brand_tag empty to hide the badge next to the title)
+brand_icon: "D"
+brand_tag: "Guides"
+
 # Header navigation (internal paths are prefixed with baseurl; full URLs are used as-is)
 nav_links:
   - title: "M Docs"

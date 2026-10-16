@@ -96,7 +96,7 @@ On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (c
 ├── assets/
 │   ├── css/main.css         # All styles and design tokens
 │   └── js/main.js           # Theme, sidebar, tree, TOC, search, shortcuts
-├── index.html               # Homepage (hero + category cards)
+├── index.html               # Homepage (search bar + category cards)
 ├── 404.html                 # Not-found page
 ├── search.json              # Generated search index
 ├── Gemfile                  # Ruby dependencies for local builds
@@ -114,6 +114,8 @@ On Windows, install Ruby with the [RubyInstaller](https://rubyinstaller.org/) (c
 | `url` | Your GitHub Pages host, e.g. `https://user.github.io`. |
 | `baseurl` | Repo sub-path, e.g. `/my-docs`. Use `""` for a user/org site or custom domain. |
 | `github_url` | Adds a GitHub icon to the header. Remove the line to hide it. |
+| `brand_icon` | Short text (1–2 characters or an emoji) shown in the logo square. `""` hides the square. |
+| `brand_tag` | Small badge next to the title (e.g. `Guides`, `v2.0`). `""` hides it. |
 | `nav_links` | Links shown in the header (hidden on screens under 1024 px). |
 | `show_footer` | `false` hides the footer site-wide. |
 | `footer_text` | Copyright line at the bottom of the footer. |
@@ -268,10 +270,10 @@ All styles are in `assets/css/main.css`. Most changes only need the **design tok
 
 | What | Where |
 |---|---|
-| Accent / brand color | `--accent`, `--accent-hover`, `--accent-soft`, `--accent-active` in both theme blocks, plus the gradients in `.brand-icon`, `.hero-title span` and `.not-found-code`. |
+| Accent / brand color | `--accent`, `--accent-hover`, `--accent-soft`, `--accent-active` in both theme blocks, plus the gradients in `.brand-icon` and `.not-found-code`. |
 | Fonts | Google Fonts `<link>` in `_includes/head.html` and `--font-sans` / `--font-mono` in `main.css`. |
-| Logo letter / badge | `brand-icon` and `brand-tag` in `_includes/header.html` and `_includes/footer.html`. Replace the letter with an `<img>` or `<svg>` to use a real logo. |
-| Homepage hero and cards | `index.html`. |
+| Logo letter / badge | `brand_icon` and `brand_tag` in `_config.yml`. For an image logo, edit `brand-icon` in `_includes/header.html` and `_includes/footer.html`. |
+| Homepage search bar and cards | `index.html`. |
 | Footer columns | `_includes/footer.html`. |
 | 404 text | `404.html`. |
 
